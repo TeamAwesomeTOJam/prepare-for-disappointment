@@ -30,7 +30,8 @@ class PlatformPlacer(Behavior):
                     pass
                 to_select = e.entity_manager.get_in_area('platform', Rect(entity.world_x, entity.world_y, 0, 0))
                 if to_select:
-                    selector = Entity('editor_platform_selector', follow=to_select.pop(), x=entity.world_x, y = entity.world_y)
+                    f = to_select.pop()
+                    selector = Entity('editor_platform_selector', follow=f, x=f.x, y = f.y)
                     e.entity_manager.add(selector)
 
 class PlatformSelector(Behavior):
@@ -90,3 +91,18 @@ class DeleteSelected(Behavior):
             e.entity_manager.remove(selector)
         except:
             pass
+
+class EntityChooser(Behavior):
+
+    def __init__(self):
+        self.required_attrs = ["entity_list", "entity_list_selected_index", "text"]
+        self.event_handlers = {"input": self.handle_input}
+
+    def handle_input(self, entity, action, value):
+        if value == 1:
+            if action == 'next':
+                entity.entity_list_selected_index = (entity.entity_list_selected_index + 1) % len(entity.entity_list)
+                entity.text = entity.entity_list[entity.entity_list_selected_index]
+            elif action == 'prev':
+                entity.entity_list_selected_index = (entity.entity_list_selected_index - 1) % len(entity.entity_list)
+                entity.text = entity.entity_list[entity.entity_list_selected_index]

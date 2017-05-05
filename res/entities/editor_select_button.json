@@ -13,5 +13,5 @@
   "up_colour": [0, 255, 255, 255],
   "down_colour": [255, 0, 255, 255],
   "behaviors" : ["DrawDynamicTextCentered", "RadioButton"],
-  "tags" : ["radio_button"]
+  "tags" : ["radio_button", "clickable"]
 }

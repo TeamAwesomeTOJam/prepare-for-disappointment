@@ -21,5 +21,7 @@
   "KeyCode.j" : ["selector", "shrink_x"],
   "KeyCode.l" : ["selector", "grow_x"],
   "KeyCode.k" : ["selector", "shrink_y"],
-  "KeyCode.i" : ["selector", "grow_y"]
+  "KeyCode.i" : ["selector", "grow_y"],
+
+  "KeyCode.q" : ["entity_chooser", "next"]
 }

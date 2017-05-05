@@ -1,0 +1,17 @@
+{
+  "name" : "entity_chooser",
+
+  "topleft" : [5,210],
+
+  "text" : "entity",
+  "font": "LiberationSans-Regular",
+  "size" : 50,
+  "colour": [255, 255, 255, 255],
+
+  "entity_list" : ["platform"],
+  "entity_list_selected_index" : 0,
+
+  "behaviors" : ["DrawDynamicText", "EntityChooser"],
+  "tags" : []
+
+}
