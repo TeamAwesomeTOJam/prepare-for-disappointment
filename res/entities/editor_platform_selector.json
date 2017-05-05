@@ -1,0 +1,12 @@
+{
+  "name": "selector",
+
+  "x" : 0,
+  "y" : 0,
+  "width" : 10,
+  "height" : 10,
+
+  "behaviors" : ["PlatformSelector"],
+  "tags" : ["draw", "update"]
+
+}

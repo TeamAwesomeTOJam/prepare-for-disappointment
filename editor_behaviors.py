@@ -1,0 +1,92 @@
+from awesomeengine.behavior import Behavior
+from awesomeengine import engine
+from awesomeengine.entity import Entity
+from awesomeengine.rectangle import from_entity, Rect
+
+
+class PlatformPlacer(Behavior):
+
+    def __init__(self):
+        self.required_attrs = ['x', 'y',
+                               ('world_x', 0),
+                               ('world_y', 0),
+                               ("mode" , "place"),
+                               ("selected_platform", None)]
+        self.event_handlers = {'input': self.handle_input}
+
+    def handle_input(self, entity, action, value):
+        if action == 'button' and value == 1:
+            e = engine.get()
+            place_button = e.entity_manager.get_by_name('place_button')
+            if place_button.selected:
+                new_platform = Entity('platform',x=entity.world_x, y=entity.world_y)
+                e.entity_manager.add(new_platform)
+            select_button = e.entity_manager.get_by_name('select_button')
+            if select_button.selected:
+                try:
+                    selector = e.entity_manager.get_by_name('selector')
+                    e.entity_manager.remove(selector)
+                except:
+                    pass
+                to_select = e.entity_manager.get_in_area('platform', Rect(entity.world_x, entity.world_y, 0, 0))
+                if to_select:
+                    selector = Entity('editor_platform_selector', follow=to_select.pop(), x=entity.world_x, y = entity.world_y)
+                    e.entity_manager.add(selector)
+
+class PlatformSelector(Behavior):
+
+    def __init__(self):
+        self.required_attrs = ['x', 'y',
+                               'width', 'height',
+                               'follow']
+        self.event_handlers = {'draw': self.handle_draw,
+                               'update' : self.handle_update,
+                               'input' : self.handle_input}
+
+    def handle_draw(self, entity, camera):
+        r = from_entity(entity)
+        camera.draw_rect((255,0,0,0), r)
+
+    def handle_update(self, entity, dt):
+        entity.x = entity.follow.x
+        entity.y = entity.follow.y
+
+    def handle_input(self, entity, action, value):
+        e = engine.get()
+        try:
+            selector = e.entity_manager.get_by_name('selector')
+            p = selector.follow
+            if value == 1:
+                if action == 'right':
+                    p.x += 10
+                elif action == 'left':
+                    p.x -= 10
+                elif action == 'up':
+                    p.y += 10
+                elif action == 'down':
+                    p.y -= 10
+                elif action == 'grow_x':
+                    p.width += 10
+                elif action == 'shrink_x':
+                    p.width = max(p.width - 10, 0)
+                elif action == 'grow_y':
+                    p.height += 10
+                elif action == 'shrink_y':
+                    p.height = max(p.height - 10, 0)
+        except:
+            pass
+
+class DeleteSelected(Behavior):
+
+    def __init__(self):
+        self.required_attrs = []
+        self.event_handlers = {"clicked": self.handle_clicked}
+
+    def handle_clicked(self, entity):
+        e = engine.get()
+        try:
+            selector = e.entity_manager.get_by_name('selector')
+            e.entity_manager.remove(selector.follow)
+            e.entity_manager.remove(selector)
+        except:
+            pass

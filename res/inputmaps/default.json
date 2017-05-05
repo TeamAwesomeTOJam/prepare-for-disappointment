@@ -1,1 +1,25 @@
-{}
+{
+  "KeyCode.escape"  : ["ENGINE", "QUIT"],
+
+  "KeyCode.up" : ["editor_camera", "up"],
+  "KeyCode.down" : ["editor_camera", "down"],
+  "KeyCode.left" : ["editor_camera", "left"],
+  "KeyCode.right" : ["editor_camera", "right"],
+
+  "KeyCode.pageup" : ["editor_camera", "zoom in"],
+  "KeyCode.pagedown" : ["editor_camera", "zoom out"],
+
+  "Mouse.Motion" : ["mouse", "move"],
+  "Mouse.1" : ["mouse", "click"],
+  "Mouse.3" : ["mouse", "button"],
+
+  "KeyCode.a" : ["selector", "left"],
+  "KeyCode.d" : ["selector", "right"],
+  "KeyCode.w" : ["selector", "up"],
+  "KeyCode.s" : ["selector", "down"],
+
+  "KeyCode.j" : ["selector", "shrink_x"],
+  "KeyCode.l" : ["selector", "grow_x"],
+  "KeyCode.k" : ["selector", "shrink_y"],
+  "KeyCode.i" : ["selector", "grow_y"]
+}
