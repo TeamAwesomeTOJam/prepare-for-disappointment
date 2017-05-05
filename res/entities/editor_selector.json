@@ -6,7 +6,7 @@
   "width" : 10,
   "height" : 10,
 
-  "behaviors" : ["PlatformSelector"],
+  "behaviors" : ["Selector"],
   "tags" : ["draw", "update"]
 
 }

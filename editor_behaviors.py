@@ -10,8 +10,7 @@ class EntityPlacer(Behavior):
         self.required_attrs = ['x', 'y',
                                ('world_x', 0),
                                ('world_y', 0),
-                               ("mode" , "place"),
-                               ("selected_platform", None)]
+                               ("mode" , "place")]
         self.event_handlers = {'input': self.handle_input}
 
     def handle_input(self, entity, action, value):
@@ -30,13 +29,13 @@ class EntityPlacer(Behavior):
                     e.entity_manager.remove(selector)
                 except:
                     pass
-                to_select = e.entity_manager.get_in_area('platform', Rect(entity.world_x, entity.world_y, 0, 0))
+                to_select = e.entity_manager.get_in_area("editable", Rect(entity.world_x, entity.world_y, 0, 0))
                 if to_select:
                     f = to_select.pop()
-                    selector = Entity('editor_platform_selector', follow=f, x=f.x, y = f.y)
+                    selector = Entity('editor_selector', follow=f, x=f.x, y = f.y)
                     e.entity_manager.add(selector)
 
-class PlatformSelector(Behavior):
+class Selector(Behavior):
 
     def __init__(self):
         self.required_attrs = ['x', 'y',
