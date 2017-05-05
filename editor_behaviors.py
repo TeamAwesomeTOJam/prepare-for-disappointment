@@ -4,7 +4,7 @@ from awesomeengine.entity import Entity
 from awesomeengine.rectangle import from_entity, Rect
 
 
-class PlatformPlacer(Behavior):
+class EntityPlacer(Behavior):
 
     def __init__(self):
         self.required_attrs = ['x', 'y',
@@ -19,7 +19,9 @@ class PlatformPlacer(Behavior):
             e = engine.get()
             place_button = e.entity_manager.get_by_name('place_button')
             if place_button.selected:
-                new_platform = Entity('platform',x=entity.world_x, y=entity.world_y)
+                chooser = e.entity_manager.get_by_name('entity_chooser')
+                name = chooser.entity_list[chooser.entity_list_selected_index]
+                new_platform = Entity(name,x=entity.world_x, y=entity.world_y)
                 e.entity_manager.add(new_platform)
             select_button = e.entity_manager.get_by_name('select_button')
             if select_button.selected:
