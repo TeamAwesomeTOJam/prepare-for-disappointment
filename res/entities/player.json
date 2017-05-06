@@ -9,8 +9,14 @@
   "grounded" : false,
   "dir" : "none",
 
-  "max_ground_speed" : 100,
-  "ground_acceleration" : 20,
+  "max_ground_speed" : 300,
+  "ground_acceleration" : 800,
+
+  "max_air_speed" : 300,
+  "air_acceleration" : 800,
+
+  "gravity" : 300,
+  "jump_vel" : 200,
 
   "tags" : ["draw", "editable", "update"],
   "behaviors" : ["DrawHitBox", "PlayerInput", "PlayerMovement"]
