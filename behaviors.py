@@ -140,7 +140,26 @@ class PlayerMovement(Behavior):
             entity.y += entity.vel_y * dt
 
 
+class PlayerCameraFollower(Behavior):
 
+    def __init__(self):
+        self.required_attrs = ['x', 'y',
+                               'dead_zone_width',
+                               'dead_zone_height',
+                               'follow_enabled']
+        self.event_handlers = {'update': self.handle_update}
+
+    def handle_update(self, entity, dt):
+        if entity.follow_enabled:
+            p = engine.get().entity_manager.get_by_name('player')
+            if p.x > entity.x + entity.dead_zone_width/2:
+                entity.x = p.x - entity.dead_zone_width/2
+            elif p.x < entity.x - entity.dead_zone_width/2:
+                entity.x = p.x + entity.dead_zone_width/2
+            if p.y > entity.y + entity.dead_zone_height/2:
+                entity.y = p.y - entity.dead_zone_height/2
+            elif p.y < entity.y - entity.dead_zone_height/2:
+                entity.y = p.y + entity.dead_zone_height/2
 
 def toward_zero(v, a, dt):
     if v > 0:

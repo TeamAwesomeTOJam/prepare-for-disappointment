@@ -118,9 +118,12 @@ class PlayMode(awesomeengine.mode.Mode):
 
     def enter(self):
         awesomeengine.get().input_manager.set_input_map('play')
+        c = awesomeengine.get().entity_manager.get_by_name('camera')
+        c.follow_enabled = True
 
     def leave(self):
-        pass
+        c = awesomeengine.get().entity_manager.get_by_name('camera')
+        c.follow_enabled = False
 
     def handle_event(self, event):
         if event.target == 'MODE':
