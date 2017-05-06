@@ -9,7 +9,10 @@ class PlayerInput(Behavior):
         self.required_attrs = [('dir', 'none'),
                                ('grounded', False),
                                ('jump_count', 0),
-                               'jump_time']
+                               'jump_time',
+                               'air_jumps',
+                               ('air_jumps_remaining', 0),
+                               ('air_jump', False)]
         self.event_handlers = {'input': self.handle_input}
 
     def handle_input(self, entity, action, value):
@@ -27,6 +30,12 @@ class PlayerInput(Behavior):
             if value == 1:
                 if entity.grounded:
                     entity.jump = True
+                    entity.jump_count = entity.jump_time
+                    entity.air_jumps_remaining = entity.air_jumps
+                elif entity.air_jumps_remaining > 0:
+                    entity.air_jumps_remaining -= 1
+                    entity.jump = True
+                    entity.air_jump = True
                     entity.jump_count = entity.jump_time
             elif value == 0:
                 entity.jump = False
@@ -97,6 +106,9 @@ class PlayerMovement(Behavior):
                 entity.grounded = False
         else:
             entity.vel_y -= entity.gravity * dt
+            if entity.air_jump:
+                entity.vel_y = entity.jump_vel
+                entity.air_jump = False
             if entity.jump:
                 entity.vel_y += entity.jump_force * dt * entity.jump_count
                 entity.jump_count -= dt
