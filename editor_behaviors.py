@@ -20,8 +20,9 @@ class EntityPlacer(Behavior):
             if place_button.selected:
                 chooser = e.entity_manager.get_by_name('entity_chooser')
                 name = chooser.entity_list[chooser.entity_list_selected_index]
-                new_platform = Entity(name,x=entity.world_x, y=entity.world_y)
-                e.entity_manager.add(new_platform)
+                new_entity = Entity(name,x=entity.world_x, y=entity.world_y)
+                if not e.entity_manager.has_by_name(new_entity.name):
+                    e.entity_manager.add(new_entity)
             select_button = e.entity_manager.get_by_name('select_button')
             if select_button.selected:
                 try:
