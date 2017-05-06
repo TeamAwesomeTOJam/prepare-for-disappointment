@@ -7,7 +7,7 @@ from awesomeengine.entity import Entity
 class AttractMode(awesomeengine.mode.Mode):
     def enter(self):
         e = awesomeengine.get()
-        e.input_manager.set_input_map('edit')
+        e.input_manager.set_input_map('default')
 
         h = Entity('hello')
         c = Entity('welcome_camera')

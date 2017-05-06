@@ -1,5 +1,5 @@
 {
   "KeyCode.escape"  : ["ENGINE", "QUIT"],
   
-  "KeyCode.p" : ["MODE", "play"]
+  "KeyCode.space" : ["MODE", "play"]
 }
