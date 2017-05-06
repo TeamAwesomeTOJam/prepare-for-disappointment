@@ -174,6 +174,16 @@ class PlayerCameraFollower(Behavior):
             elif p.y < entity.y - entity.dead_zone_height/2:
                 entity.y = p.y + entity.dead_zone_height/2
 
+class PlayerDeathZone(Behavior):
+    def __init__(self):
+        self.required_attrs = ['x', 'y',
+                               'width', 'height']
+        self.event_handlers = {'update': self.handle_update}
+
+    def handle_update(self, entity, dt):
+        if engine.get().entity_manager.get_in_area('death_zone',from_entity(entity)):
+            print 'ow'
+
 def toward_zero(v, a, dt):
     if v > 0:
         return max(0, v - a * dt)

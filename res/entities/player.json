@@ -25,6 +25,6 @@
   "jump_time" : 0.65,
 
   "tags" : ["draw", "editable", "update"],
-  "behaviors" : ["DrawHitBox", "PlayerInput", "PlayerMovement"]
+  "behaviors" : ["DrawHitBox", "PlayerInput", "PlayerMovement", "PlayerDeathZone"]
 
 }
