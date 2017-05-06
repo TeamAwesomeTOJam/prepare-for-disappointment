@@ -6,7 +6,10 @@ from awesomeengine.rectangle import from_entity, Rect
 class PlayerInput(Behavior):
 
     def __init__(self):
-        self.required_attrs = [('dir', 'none')]
+        self.required_attrs = [('dir', 'none'),
+                               ('grounded', False),
+                               ('jump_count', 0),
+                               'jump_time']
         self.event_handlers = {'input': self.handle_input}
 
     def handle_input(self, entity, action, value):
@@ -24,6 +27,9 @@ class PlayerInput(Behavior):
             if value == 1:
                 if entity.grounded:
                     entity.jump = True
+                    entity.jump_count = entity.jump_time
+            elif value == 0:
+                entity.jump = False
 
 
 class PlayerMovement(Behavior):
@@ -40,7 +46,10 @@ class PlayerMovement(Behavior):
                                'ground_acceleration',
                                'max_ground_speed',
                                'ground_acceleration',
-                               'gravity']
+                               'gravity',
+                               ('jump_count', 0),
+                               'jump_time',
+                               'jump_force']
         self.event_handlers = {'update' : self.handle_update}
 
     def handle_update(self, entity, dt):
@@ -76,7 +85,6 @@ class PlayerMovement(Behavior):
                 entity.x += entity.vel_x * dt
 
             if entity.jump:
-                entity.jump = False
                 entity.grounded = False
                 entity.vel_y = entity.jump_vel
                 entity.y += entity.vel_y * dt
@@ -90,6 +98,11 @@ class PlayerMovement(Behavior):
         else:
             #temp freefall
             entity.vel_y -= entity.gravity * dt
+            if entity.jump:
+                entity.vel_y += entity.jump_force * dt * entity.jump_count
+                entity.jump_count -= dt
+                if entity.jump_count <= 0:
+                    entity.jump = False
 
             #if falling test for ground
             if entity.vel_y < 0:
