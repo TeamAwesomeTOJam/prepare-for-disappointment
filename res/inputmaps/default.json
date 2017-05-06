@@ -1,6 +1,7 @@
 {
   "KeyCode.escape"  : ["ENGINE", "QUIT"],
   "KeyCode.f1" : ["EDITOR", "SAVE"],
+  "KeyCode.f2" : ["EDITOR", "PRINT"],
   "KeyCode.n1" : ["EDITOR", "LOAD_1"],
   "KeyCode.n2" : ["EDITOR", "LOAD_2"],
   "KeyCode.n3" : ["EDITOR", "LOAD_3"],
