@@ -13,8 +13,8 @@
   "KeyCode.left" : ["camera", "left"],
   "KeyCode.right" : ["camera", "right"],
 
-  "KeyCode.pageup" : ["editor_camera", "zoom in"],
-  "KeyCode.pagedown" : ["editor_camera", "zoom out"],
+  "KeyCode.pageup" : ["camera", "zoom in"],
+  "KeyCode.pagedown" : ["camera", "zoom out"],
 
   "Mouse.Motion" : ["mouse", "move"],
   "Mouse.1" : ["mouse", "click"],
