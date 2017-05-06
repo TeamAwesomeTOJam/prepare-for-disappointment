@@ -1,8 +1,12 @@
 {
   "KeyCode.escape"  : ["ENGINE", "QUIT"],
 
+  "KeyCode.e" : ["MODE", "edit"],
+
   "KeyCode.w" : ["player", "up"],
   "KeyCode.s" : ["player", "down"],
   "KeyCode.a" : ["player", "left"],
-  "KeyCode.d" : ["player", "right"]
+  "KeyCode.d" : ["player", "right"],
+
+  "KeyCode.space" : ["player", "up"]
 }

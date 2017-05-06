@@ -38,10 +38,14 @@ class AttractMode(awesomeengine.mode.Mode):
 
 
 class EditorMode(awesomeengine.mode.Mode):
+
+    def __init__(self):
+        self.cams = []
+
     def enter(self):
+        awesomeengine.get().input_manager.set_input_map('default')
         e = awesomeengine.get()
 
-        ce = Entity('camera')
         m = Entity('editor_mouse')
         c = Entity('editor_entity_chooser')
         b1 = Entity('editor_place_button')
@@ -49,16 +53,20 @@ class EditorMode(awesomeengine.mode.Mode):
         b3 = Entity('editor_delete_button')
         b4 = Entity('editor_move_button')
 
-        e.entity_manager.add(ce, m, b1, b2, b3, b4, c)
+        e.entity_manager.add( m, b1, b2, b3, b4, c)
 
-        l = awesomeengine.layer.SimpleCroppedLayer('draw')
-        l2 = awesomeengine.layer.SolidBackgroundLayer((0, 0, 0, 255))
+        if not self.cams:
+            ce = Entity('camera')
+            e.entity_manager.add(ce)
+            l = awesomeengine.layer.SimpleCroppedLayer('draw')
+            l2 = awesomeengine.layer.SolidBackgroundLayer((0, 0, 0, 255))
 
-        cam = Camera(awesomeengine.get().renderer, ce, [l2, l], [b1, b2, b3, b4, c])
+            cam = Camera(awesomeengine.get().renderer, ce, [l2, l], [b1, b2, b3, b4, c])
+            self.cams = [cam]
+        else:
+            self.cams[0].hud_entities = [b1, b2, b3, b4, c]
 
-        self.entities = [ce, m, b1, b2, b3, b4, c]
 
-        self.cams = [cam]
         self._load_map("1")
 
     def leave(self):
@@ -114,7 +122,10 @@ class PlayMode(awesomeengine.mode.Mode):
         pass
 
     def handle_event(self, event):
-        if awesomeengine.get().entity_manager.has_by_name(event.target):
+        if event.target == 'MODE':
+            if event.action == 'edit':
+                awesomeengine.get().change_mode('edit')
+        elif awesomeengine.get().entity_manager.has_by_name(event.target):
             awesomeengine.get().entity_manager.get_by_name(event.target).handle('input', event.action, event.value)
 
     def update(self, dt):
