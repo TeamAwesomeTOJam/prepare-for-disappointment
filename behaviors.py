@@ -31,7 +31,7 @@ class PlayerInput(Behavior):
                 if entity.grounded:
                     entity.jump = True
                     entity.jump_count = entity.jump_time
-                    entity.air_jumps_remaining = entity.air_jumps
+
                 elif entity.air_jumps_remaining > 0:
                     entity.air_jumps_remaining -= 1
                     entity.jump = True
@@ -98,6 +98,7 @@ class PlayerMovement(Behavior):
                 entity.vel_y = entity.jump_vel
                 entity.y += entity.vel_y * dt
 
+
             #are we still grounded
             test = Rect(entity.x, entity.y - entity.height/2 - 0.1, entity.width,0)
             ground = e.entity_manager.get_in_area('platform', test)
@@ -121,6 +122,7 @@ class PlayerMovement(Behavior):
                 ground = e.entity_manager.get_in_area('platform', test)
                 if ground:
                     entity.grounded = True
+                    entity.air_jumps_remaining = entity.air_jumps
                     entity.vel_y = 0
                     floor = ground.pop()
                     r = from_entity(floor)
