@@ -1,14 +1,15 @@
 {
   "KeyCode.escape"  : ["ENGINE", "QUIT"],
-  "KeyCode.c"  : ["ENGINE", "CLEAR"],
+  "KeyCode.f1" : ["ENGINE", "TELEMETRY"],
+  "KeyCode.f2"  : ["ENGINE", "CLEAR"],
   
-  "KeyCode.f1" : ["MODE", "SAVE"],
-  "KeyCode.f2" : ["MODE", "PRINT"],
+  "KeyCode.o" : ["MODE", "SAVE"],
+  "KeyCode.p" : ["MODE", "PRINT"],
   "KeyCode.n1" : ["MODE", "LOAD_1"],
   "KeyCode.n2" : ["MODE", "LOAD_2"],
   "KeyCode.n3" : ["MODE", "LOAD_3"],
   "KeyCode.n4" : ["MODE", "LOAD_4"],
-  "KeyCode.p" : ["MODE", "play"],
+  "KeyCode.space" : ["MODE", "play"],
 
   "KeyCode.up" : ["editor_camera", "up"],
   "KeyCode.down" : ["editor_camera", "down"],
