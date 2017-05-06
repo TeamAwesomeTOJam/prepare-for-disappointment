@@ -1,4 +1,5 @@
 import awesomeengine
+import mapprinter
 from awesomeengine.camera import Camera
 from awesomeengine.entity import Entity
 
@@ -88,6 +89,8 @@ class EditorMode(awesomeengine.mode.Mode):
             if event.action.startswith('LOAD_'):
                 _, map_name = event.action.split('_')
                 self._load_map(map_name)
+            if event.action == 'PRINT':
+                mapprinter.print_map('/tmp/map.bmp')
         elif e.entity_manager.has_by_name(event.target):
             e.entity_manager.get_by_name(event.target).handle('input', event.action, event.value)
 
