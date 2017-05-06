@@ -6,6 +6,8 @@
   "width" : 60,
   "height" : 120,
 
+  "colour" : [0,0,255,255],
+
   "grounded" : false,
   "dir" : "none",
 
@@ -16,9 +18,13 @@
   "air_acceleration" : 800,
 
   "gravity" : 300,
-  "jump_vel" : 400,
+  "jump_vel" : 200,
+
+  "jump_force" : 1000,
+
+  "jump_time" : 0.65,
 
   "tags" : ["draw", "editable", "update"],
-  "behaviors" : ["DrawHitBox", "PlayerInput", "PlayerMovement"]
+  "behaviors" : ["DrawHitBox", "PlayerInput", "PlayerMovement", "PlayerDeathZone"]
 
 }
