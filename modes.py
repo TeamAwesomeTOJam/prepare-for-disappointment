@@ -88,6 +88,11 @@ class EditorMode(awesomeengine.mode.Mode):
 
     def _load_map(self, map_name):
         e = awesomeengine.get()
+        
+        if e.entity_manager.has_by_name('selector'):
+            selector = e.entity_manager.get_by_name('selector')
+            e.entity_manager.remove(selector)
+
         for entity in e.entity_manager.get_by_tag('editable'):
             e.entity_manager.remove(entity)
         e.entity_manager.commit_changes()
