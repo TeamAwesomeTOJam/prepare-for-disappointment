@@ -16,7 +16,7 @@
   "air_acceleration" : 800,
 
   "gravity" : 300,
-  "jump_vel" : 200,
+  "jump_vel" : 400,
 
   "tags" : ["draw", "editable", "update"],
   "behaviors" : ["DrawHitBox", "PlayerInput", "PlayerMovement"]
