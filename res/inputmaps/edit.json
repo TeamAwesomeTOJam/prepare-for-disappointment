@@ -1,0 +1,36 @@
+{
+  "KeyCode.escape"  : ["ENGINE", "QUIT"],
+  "KeyCode.c"  : ["ENGINE", "CLEAR"],
+  
+  "KeyCode.f1" : ["MODE", "SAVE"],
+  "KeyCode.f2" : ["MODE", "PRINT"],
+  "KeyCode.n1" : ["MODE", "LOAD_1"],
+  "KeyCode.n2" : ["MODE", "LOAD_2"],
+  "KeyCode.n3" : ["MODE", "LOAD_3"],
+  "KeyCode.n4" : ["MODE", "LOAD_4"],
+  "KeyCode.p" : ["MODE", "play"],
+
+  "KeyCode.up" : ["camera", "up"],
+  "KeyCode.down" : ["camera", "down"],
+  "KeyCode.left" : ["camera", "left"],
+  "KeyCode.right" : ["camera", "right"],
+
+  "KeyCode.pageup" : ["camera", "zoom in"],
+  "KeyCode.pagedown" : ["camera", "zoom out"],
+
+  "Mouse.Motion" : ["mouse", "move"],
+  "Mouse.1" : ["mouse", "click"],
+  "Mouse.3" : ["mouse", "button"],
+
+  "KeyCode.a" : ["selector", "left"],
+  "KeyCode.d" : ["selector", "right"],
+  "KeyCode.w" : ["selector", "up"],
+  "KeyCode.s" : ["selector", "down"],
+
+  "KeyCode.j" : ["selector", "shrink_x"],
+  "KeyCode.l" : ["selector", "grow_x"],
+  "KeyCode.k" : ["selector", "shrink_y"],
+  "KeyCode.i" : ["selector", "grow_y"],
+
+  "KeyCode.q" : ["entity_chooser", "next"]
+}

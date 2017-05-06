@@ -1,12 +1,10 @@
 {
-  "name" : "camera",
+  "name" : "play_camera",
 
   "x": 0,
   "y": 0,
   "width": 1280,
   "height": 720,
-
-  "speed" : 400,
 
   "screen_x": 0,
   "screen_y": 0,
@@ -15,11 +13,9 @@
 
   "dead_zone_width" : 500,
   "dead_zone_height" : 300,
-  "follow_enabled" : false,
+  "follow_enabled" : true,
 
   "angle": 0,
-  "behaviors": ["ChangeVelocityOnInput", "MoveUsingVelocity", "ZoomOnInput", "PlayerCameraFollower"],
+  "behaviors": ["PlayerCameraFollower"],
   "tags": ["update", "camera"]
-
-
 }
