@@ -3,5 +3,5 @@
   "y": 0,
   "name" : "mouse",
   "behaviors" : ["ScreenMouseFollower", "HudWorldMouseClicker", "EntityPlacer"],
-  "tags" : ["update"]
+  "tags" : ["update", "editor"]
 }

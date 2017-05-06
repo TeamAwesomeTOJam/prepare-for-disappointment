@@ -12,6 +12,6 @@
   "entity_list_selected_index" : 0,
 
   "behaviors" : ["DrawDynamicText", "EntityChooser"],
-  "tags" : []
+  "tags" : ["editor"]
 
 }

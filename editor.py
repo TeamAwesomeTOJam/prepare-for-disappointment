@@ -12,6 +12,7 @@ def go():
     e.create_window(title='Prepare For Disappointment', size=(1280, 720))
 
     e.add_mode('edit', modes.EditorMode())
+    e.add_mode('play', modes.PlayMode())
 
     e.change_mode('edit')
     e.run()

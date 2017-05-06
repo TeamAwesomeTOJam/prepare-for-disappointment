@@ -33,15 +33,15 @@ class AttractMode(awesomeengine.mode.Mode):
             e.handle('update', dt)
 
     def draw(self):
-        for c in self.cams:
-            c.render()
+        for c in awesomeengine.get().entity_manager.get_by_tag('camera'):
+            c.camera.render()
 
 
 class EditorMode(awesomeengine.mode.Mode):
     def enter(self):
         e = awesomeengine.get()
 
-        ce = Entity('editor_camera')
+        ce = Entity('camera')
         m = Entity('editor_mouse')
         c = Entity('editor_entity_chooser')
         b1 = Entity('editor_place_button')
@@ -63,7 +63,9 @@ class EditorMode(awesomeengine.mode.Mode):
 
     def leave(self):
         e = awesomeengine.get()
-        for ent in self.entities:
+        for c in self.cams:
+            c.hud_entities = []
+        for ent in e.entity_manager.get_by_tag('editor'):
             e.entity_manager.remove(ent)
 
     def handle_event(self, event):
@@ -72,6 +74,8 @@ class EditorMode(awesomeengine.mode.Mode):
         if event.target == 'EDITOR':
             if event.action == 'SAVE':
                 e.entity_manager.save_to_map(self.current_map, lambda x : 'editable' in x.tags)
+            if event.target == 'EDITOR':
+                e.change_mode('play')
             if event.action.startswith('LOAD_'):
                 _, map_name = event.action.split('_')
                 self._load_map(map_name)
@@ -83,8 +87,8 @@ class EditorMode(awesomeengine.mode.Mode):
             e.handle('update', dt)
 
     def draw(self):
-        for c in self.cams:
-            c.render()
+        for c in awesomeengine.get().entity_manager.get_by_tag('camera'):
+            c.camera.render()
 
     def _load_map(self, map_name):
         e = awesomeengine.get()
@@ -100,3 +104,22 @@ class EditorMode(awesomeengine.mode.Mode):
         e.entity_manager.add_from_map(map_name)
         self.current_map = map_name
 
+class PlayMode(awesomeengine.mode.Mode):
+
+    def enter(self):
+        awesomeengine.get().input_manager.set_input_map('play')
+
+    def leave(self):
+        pass
+
+    def handle_event(self, event):
+        if awesomeengine.get().entity_manager.has_by_name(event.target):
+            awesomeengine.get().entity_manager.get_by_name(event.target).handle('input', event.action, event.value)
+
+    def update(self, dt):
+        for e in awesomeengine.get().entity_manager.get_by_tag('update'):
+            e.handle('update', dt)
+
+    def draw(self):
+        for c in awesomeengine.get().entity_manager.get_by_tag('camera'):
+            c.camera.render()

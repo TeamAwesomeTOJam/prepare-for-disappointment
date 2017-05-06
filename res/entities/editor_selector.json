@@ -7,6 +7,6 @@
   "height" : 10,
 
   "behaviors" : ["Selector"],
-  "tags" : ["draw", "update"]
+  "tags" : ["draw", "update", "editor"]
 
 }

@@ -4,7 +4,9 @@
   "KeyCode.n1" : ["EDITOR", "LOAD_1"],
   "KeyCode.n2" : ["EDITOR", "LOAD_2"],
   "KeyCode.n3" : ["EDITOR", "LOAD_3"],
-  "KeyCode.n4" : ["EDITOR", "LOAD_4"],    
+  "KeyCode.n4" : ["EDITOR", "LOAD_4"],
+
+  "KeyCode.p" : ["EDITOR", "play"],
 
   "KeyCode.up" : ["editor_camera", "up"],
   "KeyCode.down" : ["editor_camera", "down"],

@@ -12,5 +12,5 @@
   "up_colour": [0, 255, 255, 255],
   "down_colour": [255, 0, 255, 255],
   "behaviors" : ["DrawDynamicTextCentered", "BasicButton", "DeleteSelected"],
-  "tags" : ["clickable"]
+  "tags" : ["clickable", "editor"]
 }
