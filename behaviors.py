@@ -2,6 +2,7 @@ from awesomeengine.behavior import Behavior
 from awesomeengine import engine
 from awesomeengine.entity import Entity
 from awesomeengine.rectangle import from_entity, Rect
+from math import sin, cos, pi
 
 class PlayerInput(Behavior):
 
@@ -263,6 +264,61 @@ class GoombaWalk(Behavior):
                     r = from_entity(floor)
                     entity.y = r.top + entity.height/2 + 0.01
             entity.y += entity.vel_y * dt
+
+
+class Projectile(Behavior):
+
+    def __init__(self):
+        self.required_attrs = ['x', 'y',
+                               ('vel_x', 0),
+                               ('vel_y', 0),
+                               'width', 'height',
+                               'launch_speed',
+                               'gravity']
+        self.event_handlers = {'update': self.handle_update}
+
+    def handle_update(self, entity, dt):
+        entity.vel_y -= entity.gravity * dt
+        entity.x += entity.vel_x * dt
+        entity.y += entity.vel_y * dt
+
+        r = from_entity(entity)
+        if engine.get().entity_manager.get_in_area('platform', r):
+            engine.get().entity_manager.remove(entity)
+
+class FacingTracker(Behavior):
+
+    def __init__(self):
+        self.required_attrs = [('vel_x', 0),
+                               ('facing', 'right')]
+        self.event_handlers = {'update': self.handle_update}
+
+    def handle_update(self, entity, dt):
+        if entity.vel_x > 0:
+            entity.facing = 'right'
+        elif entity.vel_x < 0:
+            entity.facing = 'left'
+
+class PlayerProjectileShooter(Behavior):
+
+    def __init__(self):
+        self.required_attrs = []
+        self.event_handlers = {'input' : self.handle_input}
+
+    def handle_input(self, entity, action, value):
+        if action == 'fire' and value == 1:
+            print 'hi'
+            angle = 45
+
+            p = Entity('projectile')
+
+            p.x = entity.x
+            p.y = entity.y
+            p.vel_x = cos(angle*pi/180) * p.launch_speed
+            p.vel_y = sin(angle*pi/180) * p.launch_speed
+
+            engine.get().entity_manager.add(p)
+
 
 
 def toward_zero(v, a, dt):

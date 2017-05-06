@@ -1,0 +1,14 @@
+{ "x" : 0,
+  "y" : 0,
+  "width": 20,
+  "height": 20,
+
+  "vel_x" : 0,
+  "vel_y" : 0,
+
+  "launch_speed" : 200,
+
+  "gravity": 300,
+
+  "behaviors": ["DrawHitBox" , "Projectile"],
+  "tags": ["death_zone", "draw", "update"]}

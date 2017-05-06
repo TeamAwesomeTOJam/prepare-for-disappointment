@@ -27,6 +27,6 @@
   "air_jumps" : 2,
 
   "tags" : ["draw", "editable", "update"],
-  "behaviors" : ["DrawHitBox", "PlayerInput", "PlayerMovement", "PlayerDeathZone"]
+  "behaviors" : ["DrawHitBox", "PlayerInput", "PlayerMovement", "PlayerDeathZone", "PlayerProjectileShooter", "FacingTracker"]
 
 }

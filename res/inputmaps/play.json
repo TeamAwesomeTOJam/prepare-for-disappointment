@@ -10,5 +10,7 @@
   "KeyCode.a" : ["player", "left"],
   "KeyCode.d" : ["player", "right"],
 
-  "KeyCode.space" : ["player", "up"]
+  "KeyCode.space" : ["player", "up"],
+
+  "Mouse.1" : ["player", "fire"]
 }

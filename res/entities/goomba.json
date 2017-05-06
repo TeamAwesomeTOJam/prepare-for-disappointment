@@ -13,6 +13,6 @@
   "gravity" : 300,
 
   "tags" : ["draw", "editable", "update", "death_zone"],
-  "behaviors" : ["GoombaWalk", "DrawHitBox"]
+  "behaviors" : ["GoombaWalk", "DrawHitBox", "FacingTracker"]
 
 }
