@@ -8,10 +8,10 @@
 
   "KeyCode.p" : ["EDITOR", "play"],
 
-  "KeyCode.up" : ["editor_camera", "up"],
-  "KeyCode.down" : ["editor_camera", "down"],
-  "KeyCode.left" : ["editor_camera", "left"],
-  "KeyCode.right" : ["editor_camera", "right"],
+  "KeyCode.up" : ["camera", "up"],
+  "KeyCode.down" : ["camera", "down"],
+  "KeyCode.left" : ["camera", "left"],
+  "KeyCode.right" : ["camera", "right"],
 
   "KeyCode.pageup" : ["editor_camera", "zoom in"],
   "KeyCode.pagedown" : ["editor_camera", "zoom out"],

@@ -60,8 +60,9 @@ class EditorMode(awesomeengine.mode.Mode):
             e.entity_manager.add(ce)
             l = awesomeengine.layer.SimpleCroppedLayer('draw')
             l2 = awesomeengine.layer.SolidBackgroundLayer((0, 0, 0, 255))
+            l3 = awesomeengine.layer.GridLayer((255,0,0,0),200)
 
-            cam = Camera(awesomeengine.get().renderer, ce, [l2, l], [b1, b2, b3, b4, c])
+            cam = Camera(awesomeengine.get().renderer, ce, [l2,l3, l], [b1, b2, b3, b4, c])
             self.cams = [cam]
         else:
             self.cams[0].hud_entities = [b1, b2, b3, b4, c]
