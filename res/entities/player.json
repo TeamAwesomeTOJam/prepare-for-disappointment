@@ -23,10 +23,15 @@
   "jump_force" : 1000,
 
   "jump_time" : 0.65,
+  
+  "default_animation" : "character-idle",
+  
+  "sprite_name" : "character",
+  "sprite_index" : 0,
 
   "air_jumps" : 2,
 
   "tags" : ["draw", "editable", "update"],
-  "behaviors" : ["DrawHitBox", "PlayerInput", "PlayerMovement", "PlayerDeathZone", "PlayerProjectileShooter", "FacingTracker"]
+  "behaviors" : ["Animate", "DrawScaledSprite", "DrawHitBox", "PlayerInput", "PlayerMovement", "PlayerDeathZone", "PlayerProjectileShooter", "FacingTracker"]
 
 }
