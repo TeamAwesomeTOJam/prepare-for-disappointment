@@ -1,5 +1,6 @@
 {
   "KeyCode.escape"  : ["ENGINE", "QUIT"],
+  "KeyCode.c"  : ["ENGINE", "CLEAR"],
 
   "KeyCode.e" : ["MODE", "edit"],
 
