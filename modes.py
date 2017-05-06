@@ -74,7 +74,7 @@ class EditorMode(awesomeengine.mode.Mode):
         if event.target == 'EDITOR':
             if event.action == 'SAVE':
                 e.entity_manager.save_to_map(self.current_map, lambda x : 'editable' in x.tags)
-            if event.target == 'EDITOR':
+            if event.action == 'play':
                 e.change_mode('play')
             if event.action.startswith('LOAD_'):
                 _, map_name = event.action.split('_')
