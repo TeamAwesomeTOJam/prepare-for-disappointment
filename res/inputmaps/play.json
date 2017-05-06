@@ -1,0 +1,8 @@
+{
+  "KeyCode.escape"  : ["ENGINE", "QUIT"],
+
+  "KeyCode.w" : ["player", "up"],
+  "KeyCode.s" : ["player", "down"],
+  "KeyCode.a" : ["player", "left"],
+  "KeyCode.d" : ["player", "right"]
+}
