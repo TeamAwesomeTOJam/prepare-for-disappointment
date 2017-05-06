@@ -75,7 +75,7 @@ class PlayerMovement(Behavior):
                 entity.grounded = False
         else:
             #temp freefall
-            entity.vel_y -= 9.8 * dt
+            entity.vel_y -= 98 * dt
 
             #test for ground
             test = Rect(entity.x, entity.y - entity.height / 2 - 0.1, entity.width, 0)

@@ -1,1 +1,1 @@
-[["platform", {"y": 33.0, "x": -173.0, "colour": [255, 0, 255, 255], "name": "24e41337-7e4c-4bab-960d-885bc9244ccb"}]]
+[["player", {"vel_y": 0, "vel_x": 0, "grounded": true, "y": 88.01, "x": -193.0, "colour": [255, 0, 255, 255]}], ["platform", {"width": 630, "name": "24e41337-7e4c-4bab-960d-885bc9244ccb", "y": 43.0, "x": -173.0, "colour": [255, 0, 255, 255], "height": 40}]]

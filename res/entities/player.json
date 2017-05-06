@@ -3,8 +3,8 @@
 
   "x" : 0,
   "y" : 0,
-  "width" : 50,
-  "height" : 50,
+  "width" : 60,
+  "height" : 120,
 
   "grounded" : false,
   "dir" : "none",

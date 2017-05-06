@@ -85,6 +85,7 @@ class EditorMode(awesomeengine.mode.Mode):
     def update(self, dt):
         for e in awesomeengine.get().entity_manager.get_by_tag('update'):
             e.handle('update', dt)
+        awesomeengine.get().entity_manager.update_all_positions()
 
     def draw(self):
         for c in awesomeengine.get().entity_manager.get_by_tag('camera'):
@@ -119,6 +120,7 @@ class PlayMode(awesomeengine.mode.Mode):
     def update(self, dt):
         for e in awesomeengine.get().entity_manager.get_by_tag('update'):
             e.handle('update', dt)
+        awesomeengine.get().entity_manager.update_all_positions()
 
     def draw(self):
         for c in awesomeengine.get().entity_manager.get_by_tag('camera'):
