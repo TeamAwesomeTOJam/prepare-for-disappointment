@@ -34,6 +34,16 @@ class EntityPlacer(Behavior):
                     f = to_select.pop()
                     selector = Entity('editor_selector', follow=f, x=f.x, y = f.y)
                     e.entity_manager.add(selector)
+            move_button = e.entity_manager.get_by_name('move_button')
+            if move_button.selected:
+                try:
+                    selector = e.entity_manager.get_by_name('selector')
+                    selector.follow.x = entity.world_x
+                    selector.follow.y = entity.world_y
+                    selector.x = entity.world_x
+                    selector.y = entity.world_y
+                except:
+                    pass
 
 class Selector(Behavior):
 

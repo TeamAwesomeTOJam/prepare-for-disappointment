@@ -3,6 +3,6 @@
   "y" : 0,
   "width": 100,
   "height": 100,
-  "tags" : ["draw", "editable"],
+  "tags" : ["draw","platform", "editable"],
   "behaviors": ["DrawHitBox"]
 }
