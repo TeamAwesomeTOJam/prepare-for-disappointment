@@ -84,7 +84,7 @@ class EditorMode(awesomeengine.mode.Mode):
     
         if event.target == 'MODE':
             if event.action == 'SAVE':
-                e.entity_manager.save_to_map(self.current_map, lambda x : 'editable' in x.tags)
+                e.entity_manager.save_to_map(e.current_map, lambda x : 'editable' in x.tags)
             if event.action == 'play':
                 e.change_mode('play')
             if event.action.startswith('LOAD_'):
@@ -137,6 +137,12 @@ class PlayMode(awesomeengine.mode.Mode):
         for e in awesomeengine.get().entity_manager.get_by_tag('update'):
             e.handle('update', dt)
         awesomeengine.get().entity_manager.update_all_positions()
+        
+        if awesomeengine.get().entity_manager.has_by_name('map_finish'):
+            map_end = awesomeengine.get().entity_manager.get_by_name('map_finish')
+            player = awesomeengine.get().entity_manager.get_by_name('player')
+            if (abs(map_end.x - player.x) < 10) and (abs(map_end.y - player.y) < 10):
+                load_map(str(int(awesomeengine.get().current_map) + 1))
 
     def draw(self):
         for c in awesomeengine.get().entity_manager.get_by_tag('camera'):
@@ -155,4 +161,16 @@ def load_map(map_name):
     e.entity_manager.commit_changes()
     
     e.entity_manager.add_from_map(map_name)
+    e.entity_manager.commit_changes()
+    
+    if not e.entity_manager.has_by_name('player'):
+        e.entity_manager.add(Entity('player'))
+        e.entity_manager.commit_changes()
+    
+    if e.entity_manager.has_by_name('map_start'):
+        map_start = e.entity_manager.get_by_name('map_start')
+        player = e.entity_manager.get_by_name('player')
+        player.x = map_start.x
+        player.y = map_start.y
+
     e.current_map = map_name
