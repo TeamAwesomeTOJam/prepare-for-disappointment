@@ -10,5 +10,8 @@
 
   "gravity": 300,
 
-  "behaviors": ["DrawHitBox" , "Projectile"],
-  "tags": ["death_zone", "draw", "update"]}
+  "time_to_live": 5,
+
+  "behaviors": ["DrawHitBox" , "Projectile", "TimeToLive"],
+  "tags": ["draw", "update"]
+}

@@ -307,7 +307,6 @@ class PlayerProjectileShooter(Behavior):
 
     def handle_input(self, entity, action, value):
         if action == 'fire' and value == 1:
-            print 'hi'
             angle = 45
 
             p = Entity('projectile')
