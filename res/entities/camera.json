@@ -6,6 +6,8 @@
   "width": 1280,
   "height": 720,
 
+  "speed" : 400,
+
   "screen_x": 0,
   "screen_y": 0,
   "screen_width": 1280,
