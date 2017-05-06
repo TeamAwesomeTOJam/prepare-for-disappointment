@@ -6,6 +6,8 @@
   "width" : 60,
   "height" : 120,
 
+  "colour" : [0,0,255,255],
+
   "grounded" : false,
   "dir" : "none",
 
