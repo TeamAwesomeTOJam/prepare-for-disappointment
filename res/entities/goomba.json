@@ -1,0 +1,18 @@
+{
+  "x" : 0,
+  "y" : 0,
+  "width" : 60,
+  "height" : 60,
+
+  "colour" : [255, 119, 0,0],
+
+  "grounded" : false,
+  "dir" : "left",
+  "ground_speed" : 100,
+
+  "gravity" : 300,
+
+  "tags" : ["draw", "editable", "update", "death_zone"],
+  "behaviors" : ["GoombaWalk", "DrawHitBox"]
+
+}

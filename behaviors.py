@@ -96,7 +96,6 @@ class PlayerMovement(Behavior):
                 #we are floating
                 entity.grounded = False
         else:
-            #temp freefall
             entity.vel_y -= entity.gravity * dt
             if entity.jump:
                 entity.vel_y += entity.jump_force * dt * entity.jump_count
@@ -183,6 +182,74 @@ class PlayerDeathZone(Behavior):
     def handle_update(self, entity, dt):
         if engine.get().entity_manager.get_in_area('death_zone',from_entity(entity)):
             print 'ow'
+
+class GoombaWalk(Behavior):
+
+    def __init__(self):
+        self.required_attrs = ['x', 'y',
+                               ('vel_x', 0),
+                               ('vel_y', 0),
+                               'width', 'height',
+                               ('grounded', False),
+                               'ground_speed',
+                               ('dir', 'left'),
+                               'gravity']
+        self.event_handlers = {'update': self.handle_update}
+
+    def handle_update(self, entity, dt):
+
+        e = engine.get()
+        if entity.grounded:
+            if entity.dir == 'right':
+                entity.vel_x = entity.ground_speed
+            elif entity.dir == 'left':
+                entity.vel_x = -entity.ground_speed
+
+            # will we run into something
+            r = from_entity(entity)
+            r.x += entity.vel_x * dt
+
+            blocking = e.entity_manager.get_in_area('platform', r)
+            if blocking:
+                # we hit something
+                # lets move into it
+                o = blocking.pop()
+                if entity.vel_x > 0:
+                    side = from_entity(o).left
+                    entity.x = side - entity.width / 2 - 0.1
+                    entity.dir = 'left'
+                else:
+                    side = from_entity(o).right
+                    entity.x = side + entity.width / 2 + 0.1
+                    entity.dir = 'right'
+                entity.vel_x = 0
+            else:
+                #check if we will run off the edge
+                if entity.dir == 'left':
+                    px, py = r.bottom_left
+                else:
+                    px,py = r.bottom_right
+                py -= 0.1
+                if not e.entity_manager.get_in_area('platform',Rect(px,py,0,0)):
+                    if entity.dir == 'left':
+                        entity.dir = 'right'
+                    else:
+                        entity.dir = 'left'
+
+            entity.x += entity.vel_x * dt
+        else:
+            entity.vel_y -= entity.gravity * dt
+            if entity.vel_y < 0:
+                test = Rect(entity.x, entity.y - entity.height / 2 - 0.1, entity.width, 0)
+                ground = e.entity_manager.get_in_area('platform', test)
+                if ground:
+                    entity.grounded = True
+                    entity.vel_y = 0
+                    floor = ground.pop()
+                    r = from_entity(floor)
+                    entity.y = r.top + entity.height/2 + 0.01
+            entity.y += entity.vel_y * dt
+
 
 def toward_zero(v, a, dt):
     if v > 0:
