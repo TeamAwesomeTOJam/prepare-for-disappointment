@@ -1,0 +1,11 @@
+{
+  "name" : "map_start",
+  "x" : 0,
+  "y" : 0,
+  "width" : 60,
+  "height" : 120,
+  "colour": [0, 255, 0, 255],
+  
+  "tags" : ["draw", "map_start", "editable"],
+  "behaviors" : ["DrawHitBox"]
+}

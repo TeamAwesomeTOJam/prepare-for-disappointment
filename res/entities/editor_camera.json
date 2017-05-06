@@ -1,10 +1,11 @@
 {
-  "name" : "camera",
+  "name" : "editor_camera",
 
   "x": 0,
   "y": 0,
   "width": 1280,
   "height": 720,
+  "speed" : 400,
 
   "speed" : 400,
 
@@ -15,11 +16,10 @@
 
   "dead_zone_width" : 500,
   "dead_zone_height" : 300,
-  "follow_enabled" : false,
 
   "angle": 0,
-  "behaviors": ["ChangeVelocityOnInput", "MoveUsingVelocity", "ZoomOnInput", "PlayerCameraFollower"],
-  "tags": ["update", "camera"]
+  "behaviors": ["ChangeVelocityOnInput", "MoveUsingVelocity", "ZoomOnInput"],
+  "tags": ["update", "camera", "editor"]
 
 
 }

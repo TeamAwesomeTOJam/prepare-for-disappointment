@@ -7,6 +7,7 @@ from awesomeengine.entity import Entity
 class AttractMode(awesomeengine.mode.Mode):
     def enter(self):
         e = awesomeengine.get()
+        e.input_manager.set_input_map('default')
 
         h = Entity('hello')
         c = Entity('welcome_camera')
@@ -26,6 +27,10 @@ class AttractMode(awesomeengine.mode.Mode):
             e.entity_manager.remove(ent)
 
     def handle_event(self, event):
+        if event.target == 'MODE':
+            if event.action == 'play':
+                awesomeengine.get().change_mode('play')
+    
         if awesomeengine.get().entity_manager.has_by_name(event.target):
             awesomeengine.get().entity_manager.get_by_name(event.target).handle('input', event.action, event.value)
 
@@ -44,8 +49,9 @@ class EditorMode(awesomeengine.mode.Mode):
         self.cams = []
 
     def enter(self):
-        awesomeengine.get().input_manager.set_input_map('default')
+        awesomeengine.get()
         e = awesomeengine.get()
+        e.input_manager.set_input_map('edit')
 
         m = Entity('editor_mouse')
         c = Entity('editor_entity_chooser')
@@ -56,39 +62,34 @@ class EditorMode(awesomeengine.mode.Mode):
 
         e.entity_manager.add( m, b1, b2, b3, b4, c)
 
-        if not self.cams:
-            ce = Entity('camera')
-            e.entity_manager.add(ce)
-            l = awesomeengine.layer.SimpleCroppedLayer('draw')
-            l2 = awesomeengine.layer.SolidBackgroundLayer((0, 0, 0, 255))
-            l3 = awesomeengine.layer.GridLayer((75,75,0,0),200)
+        ce = Entity('editor_camera')
+        e.entity_manager.add(ce)
+        l = awesomeengine.layer.SimpleCroppedLayer('draw')
+        l2 = awesomeengine.layer.SolidBackgroundLayer((0, 0, 0, 255))
+        l3 = awesomeengine.layer.GridLayer((75,75,0,0),200)
 
-            cam = Camera(awesomeengine.get().renderer, ce, [l2,l3, l], [b1, b2, b3, b4, c])
-            self.cams = [cam]
-        else:
-            self.cams[0].hud_entities = [b1, b2, b3, b4, c]
-
-
-        self._load_map("1")
+        cam = Camera(awesomeengine.get().renderer, ce, [l2,l3, l], [b1, b2, b3, b4, c])
+        self.cams = [cam]
+        
+        if not hasattr(e, 'current_map'):
+            load_map("1")
 
     def leave(self):
         e = awesomeengine.get()
-        for c in self.cams:
-            c.hud_entities = []
         for ent in e.entity_manager.get_by_tag('editor'):
             e.entity_manager.remove(ent)
 
     def handle_event(self, event):
         e = awesomeengine.get()
     
-        if event.target == 'EDITOR':
+        if event.target == 'MODE':
             if event.action == 'SAVE':
-                e.entity_manager.save_to_map(self.current_map, lambda x : 'editable' in x.tags)
+                e.entity_manager.save_to_map(e.current_map, lambda x : 'editable' in x.tags)
             if event.action == 'play':
                 e.change_mode('play')
             if event.action.startswith('LOAD_'):
                 _, map_name = event.action.split('_')
-                self._load_map(map_name)
+                load_map(map_name)
             if event.action == 'PRINT':
                 mapprinter.print_map('/tmp/map.bmp')
         elif e.entity_manager.has_by_name(event.target):
@@ -103,30 +104,27 @@ class EditorMode(awesomeengine.mode.Mode):
         for c in awesomeengine.get().entity_manager.get_by_tag('camera'):
             c.camera.render()
 
-    def _load_map(self, map_name):
-        e = awesomeengine.get()
-        
-        if e.entity_manager.has_by_name('selector'):
-            selector = e.entity_manager.get_by_name('selector')
-            e.entity_manager.remove(selector)
-
-        for entity in e.entity_manager.get_by_tag('editable'):
-            e.entity_manager.remove(entity)
-        e.entity_manager.commit_changes()
-        
-        e.entity_manager.add_from_map(map_name)
-        self.current_map = map_name
 
 class PlayMode(awesomeengine.mode.Mode):
 
     def enter(self):
-        awesomeengine.get().input_manager.set_input_map('play')
-        c = awesomeengine.get().entity_manager.get_by_name('camera')
-        c.follow_enabled = True
+        e = awesomeengine.get()
+        e.input_manager.set_input_map('play')
+        
+        ce = Entity('play_camera')
+        e.entity_manager.add(ce)
+        l = awesomeengine.layer.SimpleCroppedLayer('draw')
+        l2 = awesomeengine.layer.SolidBackgroundLayer((0, 0, 0, 255))
+
+        cam = Camera(awesomeengine.get().renderer, ce, [l2, l], [])
+        self.cams = [cam]
+        
+        if not hasattr(e, 'current_map'):
+            load_map("1")
 
     def leave(self):
-        c = awesomeengine.get().entity_manager.get_by_name('camera')
-        c.follow_enabled = False
+        c = awesomeengine.get().entity_manager.get_by_name('play_camera')
+        awesomeengine.get().entity_manager.remove(c)       
 
     def handle_event(self, event):
         if event.target == 'MODE':
@@ -139,7 +137,40 @@ class PlayMode(awesomeengine.mode.Mode):
         for e in awesomeengine.get().entity_manager.get_by_tag('update'):
             e.handle('update', dt)
         awesomeengine.get().entity_manager.update_all_positions()
+        
+        if awesomeengine.get().entity_manager.has_by_name('map_finish'):
+            map_end = awesomeengine.get().entity_manager.get_by_name('map_finish')
+            player = awesomeengine.get().entity_manager.get_by_name('player')
+            if (abs(map_end.x - player.x) < 10) and (abs(map_end.y - player.y) < 10):
+                load_map(str(int(awesomeengine.get().current_map) + 1))
 
     def draw(self):
         for c in awesomeengine.get().entity_manager.get_by_tag('camera'):
             c.camera.render()
+            
+            
+def load_map(map_name):
+    e = awesomeengine.get()
+    
+    if e.entity_manager.has_by_name('selector'):
+        selector = e.entity_manager.get_by_name('selector')
+        e.entity_manager.remove(selector)
+
+    for entity in e.entity_manager.get_by_tag('editable'):
+        e.entity_manager.remove(entity)
+    e.entity_manager.commit_changes()
+    
+    e.entity_manager.add_from_map(map_name)
+    e.entity_manager.commit_changes()
+    
+    if not e.entity_manager.has_by_name('player'):
+        e.entity_manager.add(Entity('player'))
+        e.entity_manager.commit_changes()
+    
+    if e.entity_manager.has_by_name('map_start'):
+        map_start = e.entity_manager.get_by_name('map_start')
+        player = e.entity_manager.get_by_name('player')
+        player.x = map_start.x
+        player.y = map_start.y
+
+    e.current_map = map_name
