@@ -9,7 +9,7 @@
   "colour" : [0,0,255,255],
 
   "grounded" : false,
-  "dir" : "none",
+  "dir" : null,
 
   "max_ground_speed" : 300,
   "ground_acceleration" : 800,
@@ -32,6 +32,15 @@
   "air_jumps" : 2,
 
   "tags" : ["draw", "editable", "update"],
-  "behaviors" : ["Animate", "DrawScaledSprite", "DrawHitBox", "PlayerInput", "PlayerMovement", "PlayerDeathZone", "PlayerProjectileShooter", "FacingTracker"]
+  "behaviors" : [
+    "Animate", 
+    "DrawScaledSprite", 
+    "DrawHitBox", 
+    "PlayerInput", 
+    "PlayerMovement", 
+    "PlayerDeathZone", 
+    "PlayerProjectileShooter", 
+    "FacingTracker", 
+    "PlayerAnimationChooser"]
 
 }

@@ -319,6 +319,22 @@ class PlayerProjectileShooter(Behavior):
             engine.get().entity_manager.add(p)
 
 
+class PlayerAnimationChooser(Behavior):
+
+    def __init__(self):
+        self.required_attrs = (('facing', "none"), ('dir', "none"), ('grounded', True))
+        self.event_handlers = {'update': self.handle_update}
+        
+    def handle_update(self, entity, dt):
+        if entity.facing == 'left':
+            entity.flip = 1
+        elif entity.facing == 'right':
+            entity.flip = 0
+    
+        if entity.dir == "none" and entity.grounded:
+            entity.handle('play_animation', 'character-idle')
+        elif entity.grounded:
+            entity.handle('play_animation', 'character-walk')          
 
 def toward_zero(v, a, dt):
     if v > 0:
