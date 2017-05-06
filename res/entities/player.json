@@ -24,6 +24,8 @@
 
   "jump_time" : 0.65,
 
+  "air_jumps" : 2,
+
   "tags" : ["draw", "editable", "update"],
   "behaviors" : ["DrawHitBox", "PlayerInput", "PlayerMovement", "PlayerDeathZone"]
 
