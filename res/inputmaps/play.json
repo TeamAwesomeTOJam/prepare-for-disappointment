@@ -12,5 +12,7 @@
 
   "KeyCode.space" : ["player", "up"],
 
-  "Mouse.1" : ["player", "fire"]
+  "Mouse.1" : ["player", "fire"],
+
+  "Mouse.Motion" : ["mouse", "move"]
 }

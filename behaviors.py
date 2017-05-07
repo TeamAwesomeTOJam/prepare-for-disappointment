@@ -2,7 +2,8 @@ from awesomeengine.behavior import Behavior
 from awesomeengine import engine
 from awesomeengine.entity import Entity
 from awesomeengine.rectangle import from_entity, Rect
-from math import sin, cos, pi
+from math import sin, cos, radians
+from awesomeengine.vec2d import Vec2d
 
 class PlayerInput(Behavior):
 
@@ -307,14 +308,17 @@ class PlayerProjectileShooter(Behavior):
 
     def handle_input(self, entity, action, value):
         if action == 'fire' and value == 1:
-            angle = 45
+
+            m = engine.get().entity_manager.get_by_name('mouse')
+
+            angle = radians((Vec2d(m.x, m.y) - Vec2d(entity.x, entity.y)).angle)
 
             p = Entity('projectile')
 
             p.x = entity.x
             p.y = entity.y
-            p.vel_x = cos(angle*pi/180) * p.launch_speed
-            p.vel_y = sin(angle*pi/180) * p.launch_speed
+            p.vel_x = cos(angle) * p.launch_speed + entity.vel_x
+            p.vel_y = sin(angle) * p.launch_speed + entity.vel_y
 
             engine.get().entity_manager.add(p)
 
