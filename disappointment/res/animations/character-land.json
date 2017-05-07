@@ -6,7 +6,7 @@
                 "sprite_name": "character-jump",
                 "sprite_index": 6
             },
-            "events" : [["play_sound", "land"]]
+            "events" : [["play_sound", "walk"]]
         },
         {
             "duration": 0.08,

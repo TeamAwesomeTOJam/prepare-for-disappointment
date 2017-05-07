@@ -287,6 +287,7 @@ class Projectile(Behavior):
         r = from_entity(entity)
         if engine.get().entity_manager.get_in_area('platform', r):
             engine.get().entity_manager.remove(entity)
+            entity.handle('play_sound', 'hit')
 
 class FacingTracker(Behavior):
 
@@ -375,6 +376,7 @@ class HurtBadGuy(Behavior):
             h.image = h.images[h.health - 1]
         if hit:
             engine.get().entity_manager.remove(entity)
+            entity.handle('play_sound', 'enemy-hit')
 
 class DieOnZeroHealth(Behavior):
 
@@ -410,6 +412,7 @@ class PlayerHurt(Behavior):
             print 'ow', entity.health
             if entity.health <= 0:
                 print 'i am dead'
+            entity.handle('play_sound', 'character-hit')
 
 
 class HurtPlayer(Behavior):
