@@ -63,6 +63,11 @@ class EditorMode(awesomeengine.mode.Mode):
         e.entity_manager.add( m, b1, b2, b3, b4, c)
 
         ce = Entity('editor_camera')
+
+        if hasattr(e, 'save_xy'):
+            ce.x = e.save_xy[0]
+            ce.y = e.save_xy[1]
+
         e.entity_manager.add(ce)
         l = awesomeengine.layer.SimpleCroppedLayer('draw')
         l2 = awesomeengine.layer.SolidBackgroundLayer((0, 0, 0, 255))
@@ -130,6 +135,7 @@ class PlayMode(awesomeengine.mode.Mode):
 
     def leave(self):
         c = awesomeengine.get().entity_manager.get_by_name('play_camera')
+        awesomeengine.get().save_xy = (c.x,c.y)
         awesomeengine.get().entity_manager.remove(c)
         m = awesomeengine.get().entity_manager.get_by_name('mouse')
         awesomeengine.get().entity_manager.remove(m)
