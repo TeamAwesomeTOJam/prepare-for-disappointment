@@ -43,6 +43,7 @@
 
   "tags" : ["draw", "update", "player"],
   "behaviors" : [
+    "PlaySound",
     "Animate",
     "DrawHitBox",
     "DrawSprite", 

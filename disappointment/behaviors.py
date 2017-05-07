@@ -358,7 +358,7 @@ class PlayerAnimationChooser(Behavior):
                 entity.handle('play_animation', 'character-land')                
             if entity.dir == "none" and entity.animation_name == 'character-walk':
                 entity.handle('play_animation', 'character-idle')
-            elif entity.dir != "none":
+            elif entity.dir != "none" and entity.animation_name != 'character-land':
                 entity.handle('play_animation', 'character-walk')
 
 class HurtBadGuy(Behavior):
