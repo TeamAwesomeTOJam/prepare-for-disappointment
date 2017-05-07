@@ -13,7 +13,7 @@
             "attributes": {
                 "sprite_index": 8
             },
-            "events" : []
+            "events" : [["play_sound", "walk"]]
         },
         {
             "duration": 0.08,
@@ -62,7 +62,7 @@
             "attributes": {
                 "sprite_index": 15
             },
-            "events" : []
+            "events" : [["play_sound", "walk"]]
         },
         {
             "duration": 0.08,
