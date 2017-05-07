@@ -30,6 +30,7 @@
   
   "sprite_name" : "character",
   "sprite_index" : 0,
+  "sprite_scale" : 0.18,
 
   "air_jumps" : 2,
 
@@ -42,8 +43,7 @@
   "tags" : ["draw", "editable", "update"],
   "behaviors" : [
     "Animate", 
-    "DrawScaledSprite", 
-    "DrawHitBox", 
+    "DrawSprite", 
     "PlayerInput", 
     "PlayerMovement", 
     "PlayerProjectileShooter",
