@@ -1,7 +1,11 @@
+import sdl2hl
+
 import awesomeengine
 import mapprinter
 from awesomeengine.camera import Camera
 from awesomeengine.entity import Entity
+
+MUSIC_VOLUME = 48
 
 
 class AttractMode(awesomeengine.mode.Mode):
@@ -20,11 +24,15 @@ class AttractMode(awesomeengine.mode.Mode):
 
         self.entities = [h, c]
         self.cams = [cam]
-
+        self.music = e.resource_manager.get('sound', 'Braveless_Journey_Part3')
+        self.channel = self.music.play(loops=-1)
+        self.channel.volume = MUSIC_VOLUME
+        
     def leave(self):
         e = awesomeengine.get()
         for ent in self.entities:
             e.entity_manager.remove(ent)
+        self.channel.halt()
 
     def handle_event(self, event):
         if event.target == 'MODE' and event.value == 1:
@@ -191,6 +199,17 @@ class SpalshScreen(awesomeengine.mode.Mode):
 
         self.entities = [s, c]
         self.cams = [cam]
+        
+        if hasattr(self, 'channel'):
+            self.channel.halt()
+        if not hasattr(e, 'current_map'):
+            self.music = e.resource_manager.get('sound', 'Braveless_Journey_Part1')
+        elif e.current_map == "1":
+            self.music = e.resource_manager.get('sound', 'Braveless_Journey_Part2')    
+        else:
+            self.music = e.resource_manager.get('sound', 'Braveless_Journey_Part3')        
+        self.channel = self.music.play(loops=-1)
+        self.channel.volume = MUSIC_VOLUME
 
     def leave(self):
 
