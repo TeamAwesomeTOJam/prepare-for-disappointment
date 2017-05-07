@@ -304,16 +304,11 @@ class FacingTracker(Behavior):
 class PlayerProjectileShooter(Behavior):
 
     def __init__(self):
-        self.required_attrs = ['shoot_time', ('shoot_counter', 0)]
-        self.event_handlers = {'input' : self.handle_input,
-                               'update' : self.handle_update}
-
-    def handle_update(self, entity, dt):
-        if entity.shoot_counter > 0:
-            entity.shoot_counter -= dt
+        self.required_attrs = []
+        self.event_handlers = {'input' : self.handle_input}
 
     def handle_input(self, entity, action, value):
-        if action == 'fire' and value == 1 and entity.shoot_counter <= 0:
+        if action == 'fire' and value == 1 and entity.animation_name != 'character-shoot':
             entity.shoot_counter = entity.shoot_time
 
             m = engine.get().entity_manager.get_by_name('mouse')
@@ -328,6 +323,7 @@ class PlayerProjectileShooter(Behavior):
             p.vel_y = sin(angle) * entity.launch_speed# + entity.vel_y
 
             engine.get().entity_manager.add(p)
+            entity.handle('play_animation', 'character-shoot')
 
 
 class PlayerAnimationChooser(Behavior):
@@ -350,7 +346,7 @@ class PlayerAnimationChooser(Behavior):
         if entity.grounded:
             if entity.animation_name == 'character-in-air':
                 entity.handle('play_animation', 'character-land')                
-            if entity.dir == "none" and entity.animation_name != 'character-land':
+            if entity.dir == "none" and entity.animation_name == 'character-walk':
                 entity.handle('play_animation', 'character-idle')
             elif entity.dir != "none":
                 entity.handle('play_animation', 'character-walk')
