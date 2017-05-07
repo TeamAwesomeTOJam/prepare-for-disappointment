@@ -5,6 +5,8 @@
 
   "colour" : [255, 109, 109, 0],
 
+  "image" : "enemy-projectile.png",
+
   "vel_x" : 0,
   "vel_y" : 0,
 
@@ -12,6 +14,6 @@
 
   "time_to_live": 5,
 
-  "behaviors": ["DrawHitBox" , "Projectile", "TimeToLive", "HurtPlayer"],
+  "behaviors": ["DrawHitBox" , "Projectile", "TimeToLive", "HurtPlayer", "DrawScaledImage"],
   "tags": ["draw", "update", "kill_me"]
 }
