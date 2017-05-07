@@ -12,6 +12,6 @@
 
   "time_to_live": 5,
 
-  "behaviors": ["DrawHitBox" , "Projectile", "TimeToLive", "HurtBadGuy"],
+  "behaviors": ["DrawHitBox", "Projectile", "TimeToLive", "HurtBadGuy"],
   "tags": ["draw", "update"]
 }
