@@ -1,0 +1,17 @@
+{ "x" : 0,
+  "y" : 0,
+  "width": 20,
+  "height": 20,
+
+  "colour" : [255, 109, 109, 0],
+
+  "vel_x" : 0,
+  "vel_y" : 0,
+
+  "gravity": 300,
+
+  "time_to_live": 5,
+
+  "behaviors": ["DrawHitBox" , "Projectile", "TimeToLive", "HurtPlayer"],
+  "tags": ["draw", "update"]
+}

@@ -383,19 +383,62 @@ class PlayerHurt(Behavior):
         self.required_attrs = ['health',
                                'i_time',
                                ('i_count', 0)]
-        self.event_handlers = {'update' : self.handle_update}
+        self.event_handlers = {'update' : self.handle_update,
+                               'damage' : self.handle_damage}
 
     def handle_update(self, entity, dt):
         if entity.i_count > 0:
             entity.i_count -= dt
-        else:
-            if engine.get().entity_manager.get_in_area('death_zone', from_entity(entity)):
-                entity.i_count = entity.i_time
-                entity.health -= 1
-                print 'ow'
-                if entity.health == 0:
-                    print 'i am dead'
+        if engine.get().entity_manager.get_in_area('death_zone', from_entity(entity)):
+            entity.handle('damage', 1)
 
+    def handle_damage(self, entity, damage):
+        if entity.i_count <= 0:
+            entity.i_count = entity.i_time
+            entity.health -= damage
+            print 'ow'
+            if entity.health == 0:
+                print 'i am dead'
+
+
+class HurtPlayer(Behavior):
+    def __init__(self):
+        self.required_attrs = ['x', 'y', 'width', 'height']
+        self.event_handlers = {'update': self.handle_update}
+
+
+    def handle_update(self, entity, dt):
+        hit = engine.get().entity_manager.get_in_area('player', from_entity(entity))
+        for h in hit:
+            h.handle('damage', 1)
+        if hit:
+            engine.get().entity_manager.remove(entity)
+
+
+class BadGuyShoot(Behavior):
+
+    def __init__(self):
+        self.required_attrs = ['shoot_rate', ('shoot_counter', 0)]
+        self.event_handlers = {'update' : self.handle_update}
+
+    def handle_update(self, entity, dt):
+        if entity.shoot_counter > 0:
+            entity.shoot_counter -= dt
+
+        if entity.shoot_counter <= 0:
+            entity.shoot_counter = entity.shoot_rate
+
+
+            angle = radians(135)
+
+            p = Entity('bad_guy_projectile')
+
+            p.x = entity.x
+            p.y = entity.y
+            p.vel_x = cos(angle) * entity.launch_speed + entity.vel_x
+            p.vel_y = sin(angle) * entity.launch_speed + entity.vel_y
+
+            engine.get().entity_manager.add(p)
 
 def toward_zero(v, a, dt):
     if v > 0:

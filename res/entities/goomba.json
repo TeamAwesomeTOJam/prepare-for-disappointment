@@ -14,7 +14,10 @@
 
   "health" : 5,
 
+  "shoot_rate": 1,
+  "launch_speed": 400,
+
   "tags" : ["draw", "editable", "update", "death_zone", "bad_guy"],
-  "behaviors" : ["GoombaWalk", "DrawHitBox", "FacingTracker", "DieOnZeroHealth"]
+  "behaviors" : ["GoombaWalk", "DrawHitBox", "FacingTracker", "DieOnZeroHealth", "BadGuyShoot"]
 
 }
