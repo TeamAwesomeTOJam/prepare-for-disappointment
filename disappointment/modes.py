@@ -147,7 +147,8 @@ class PlayMode(awesomeengine.mode.Mode):
             map_end = awesomeengine.get().entity_manager.get_by_name('map_finish')
             player = awesomeengine.get().entity_manager.get_by_name('player')
             if (abs(map_end.x - player.x) < 10) and (abs(map_end.y - player.y) < 10):
-                load_map(str(int(awesomeengine.get().current_map) + 1))
+                awesomeengine.get().change_mode('splash')
+                #load_map(str(int(awesomeengine.get().current_map) + 1))
 
     def draw(self):
         for c in awesomeengine.get().entity_manager.get_by_tag('camera'):
