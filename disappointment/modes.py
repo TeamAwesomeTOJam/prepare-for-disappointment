@@ -209,6 +209,10 @@ class SpalshScreen(awesomeengine.mode.Mode):
 def un_load_map():
     e = awesomeengine.get()
 
+    if e.entity_manager.has_by_name('player'):
+        player = e.entity_manager.get_by_name('player')
+        e.entity_manager.remove(player)
+
     if e.entity_manager.has_by_name('selector'):
         selector = e.entity_manager.get_by_name('selector')
         e.entity_manager.remove(selector)
