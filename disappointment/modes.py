@@ -228,6 +228,10 @@ def un_load_map():
 
     for entity in e.entity_manager.get_by_tag('editable'):
         e.entity_manager.remove(entity)
+
+    for entity in e.entity_manager.get_by_tag('kill_me'):
+        e.entity_manager.remove(entity)
+
     e.entity_manager.commit_changes()
 
 

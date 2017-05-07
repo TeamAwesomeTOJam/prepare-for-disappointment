@@ -17,5 +17,5 @@
   "sprite_scale" : 0.18,
 
   "behaviors": ["DrawHitBox", "DrawSprite", "Projectile", "TimeToLive", "HurtBadGuy"],
-  "tags": ["draw", "update"]
+  "tags": ["draw", "update", "kill_me"]
 }

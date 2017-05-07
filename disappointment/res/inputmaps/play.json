@@ -6,13 +6,19 @@
   "KeyCode.e" : ["MODE", "edit"],
 
   "KeyCode.w" : ["player", "up"],
+  "0 ControllerButton.dpad_up" : ["player", "up"],
   "KeyCode.s" : ["player", "down"],
+  "0 ControllerButton.dpad_down" : ["player", "down"],
   "KeyCode.a" : ["player", "left"],
+  "0 ControllerButton.dpad_left" : ["player", "left"],
   "KeyCode.d" : ["player", "right"],
+  "0 ControllerButton.dpad_right" : ["player", "right"],
 
   "KeyCode.space" : ["player", "up"],
+  "0 ControllerButton.a" : ["player", "up"],
 
   "Mouse.1" : ["player", "fire"],
+  "0 ControllerButton.b" : ["player", "fire"],
   "KeyCode.lshift" : ["player", "fire"],
   "KeyCode.return_" : ["player", "fire"],
 

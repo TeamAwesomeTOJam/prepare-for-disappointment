@@ -3,5 +3,8 @@
   "KeyCode.f1" : ["ENGINE", "TELEMETRY"],
   "KeyCode.f2"  : ["ENGINE", "CLEAR"], 
   
-  "KeyCode.space" : ["MODE", "play"]
+  "KeyCode.space" : ["MODE", "play"],
+
+  "0 ControllerButton.start" : ["MODE", "play"],
+  "0 ControllerButton.a" : ["MODE", "play"]
 }
