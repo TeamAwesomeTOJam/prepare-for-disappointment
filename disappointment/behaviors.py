@@ -311,9 +311,14 @@ class PlayerProjectileShooter(Behavior):
         if action == 'fire' and value == 1 and entity.animation_name != 'character-shoot':
             entity.shoot_counter = entity.shoot_time
 
-            m = engine.get().entity_manager.get_by_name('mouse')
+            #m = engine.get().entity_manager.get_by_name('mouse')
 
-            angle = radians((Vec2d(m.x, m.y) - Vec2d(entity.x, entity.y)).angle)
+            #angle = radians((Vec2d(m.x, m.y) - Vec2d(entity.x, entity.y)).angle)
+
+            if entity.facing == 'right':
+                angle = radians(45)
+            else:
+                angle = radians(135)
 
             p = Entity('projectile')
 
