@@ -227,7 +227,8 @@ class SpalshScreen(awesomeengine.mode.Mode):
         if not hasattr(e, 'current_map'):
             load_map("1")
         else:
-            load_map(str(int(awesomeengine.get().current_map) + 1))
+            if awesomeengine.get().current_map != '4':
+                load_map(str(int(awesomeengine.get().current_map) + 1))
 
     def update(self, dt):
         pass
@@ -240,7 +241,10 @@ class SpalshScreen(awesomeengine.mode.Mode):
         e = awesomeengine.get()
         if event.target == 'MODE' and event.value == 1:
             if event.action == 'play':
-                e.change_mode('play')
+                if hasattr(awesomeengine.get(),'current_map') and awesomeengine.get().current_map == '4':
+                    e.change_mode('welcome')
+                else:
+                    e.change_mode('play')
 
 
 class DeadMode(awesomeengine.mode.Mode):
