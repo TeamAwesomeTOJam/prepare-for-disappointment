@@ -79,10 +79,11 @@ class EditorMode(awesomeengine.mode.Mode):
         e.entity_manager.add(ce)
         l = awesomeengine.layer.SimpleCroppedLayer('draw')
         bl = awesomeengine.layer.SimpleCroppedLayer('draw2')
+        bbl = awesomeengine.layer.SimpleCroppedLayer('draw3')
         l2 = awesomeengine.layer.SolidBackgroundLayer((0, 0, 0, 255))
         l3 = awesomeengine.layer.GridLayer((75,75,0,0),200)
 
-        cam = Camera(awesomeengine.get().renderer, ce, [l2,l3,bl, l], [b1, b2, b3, b4, c])
+        cam = Camera(awesomeengine.get().renderer, ce, [l2, l3, bbl, bl, l], [b1, b2, b3, b4, c])
         self.cams = [cam]
         
         if not hasattr(e, 'current_map'):
@@ -129,12 +130,13 @@ class PlayMode(awesomeengine.mode.Mode):
         e.entity_manager.add(ce)
         l = awesomeengine.layer.SimpleCroppedLayer('draw')
         bl = awesomeengine.layer.SimpleCroppedLayer('draw2')
+        bbl = awesomeengine.layer.SimpleCroppedLayer('draw3')
         l2 = awesomeengine.layer.SolidBackgroundLayer((0, 0, 0, 255))
 
         h = Entity('hearts')
 
 
-        cam = Camera(awesomeengine.get().renderer, ce, [l2, bl, l], [h])
+        cam = Camera(awesomeengine.get().renderer, ce, [l2, bbl, bl, l], [h])
         self.cams = [cam]
 
         m = Entity('mouse')

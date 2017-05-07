@@ -8,8 +8,8 @@
 
   "screen_x": 0,
   "screen_y": 0,
-  "screen_width": 2560,
-  "screen_height": 1440,
+  "screen_width": 1280,
+  "screen_height": 720,
 
   "dead_zone_width" : 500,
   "dead_zone_height" : 300,

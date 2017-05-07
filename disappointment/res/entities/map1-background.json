@@ -1,0 +1,13 @@
+{
+  "name" : "map1-background",
+
+  "x" : 0,
+  "y" : 0,
+  "width" : 4873,
+  "height" : 2077,
+
+  "image" : "map1-backgroundlayer.png",
+
+  "tags" : ["draw3", "editable"],
+  "behaviors" : ["DrawScaledImage"]
+}

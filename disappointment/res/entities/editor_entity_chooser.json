@@ -8,7 +8,7 @@
   "size" : 50,
   "colour": [255, 255, 255, 255],
 
-  "entity_list" : ["platform", "death_zone","goomba", "map_start", "map_finish", "dragon", "map1-foreground"],
+  "entity_list" : ["platform", "death_zone","goomba", "map_start", "map_finish", "dragon", "map1-foreground", "map1-background"],
   "entity_list_selected_index" : 0,
 
   "behaviors" : ["DrawDynamicText", "EntityChooser"],
