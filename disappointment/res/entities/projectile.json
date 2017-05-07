@@ -12,6 +12,10 @@
 
   "time_to_live": 5,
 
-  "behaviors": ["DrawHitBox", "Projectile", "TimeToLive", "HurtBadGuy"],
+  "sprite_name" : "arrow",
+  "sprite_index" : 0,
+  "sprite_scale" : 0.18,
+
+  "behaviors": ["DrawHitBox", "DrawSprite", "Projectile", "TimeToLive", "HurtBadGuy"],
   "tags": ["draw", "update"]
 }

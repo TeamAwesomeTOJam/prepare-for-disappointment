@@ -322,6 +322,11 @@ class PlayerProjectileShooter(Behavior):
             p.vel_x = cos(angle) * entity.launch_speed# + entity.vel_x
             p.vel_y = sin(angle) * entity.launch_speed# + entity.vel_y
 
+            if p.vel_x > 0:
+                p.flip = False
+            else:
+                p.flip = True
+
             engine.get().entity_manager.add(p)
             entity.handle('play_animation', 'character-shoot')
 
