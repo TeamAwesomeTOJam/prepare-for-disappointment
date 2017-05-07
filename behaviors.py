@@ -368,6 +368,27 @@ class DieOnZeroHealth(Behavior):
         if entity.health == 0:
             engine.get().entity_manager.remove(entity)
 
+
+class PlayerHurt(Behavior):
+
+    def __init__(self):
+        self.required_attrs = ['health',
+                               'i_time',
+                               ('i_count', 0)]
+        self.event_handlers = {'update' : self.handle_update}
+
+    def handle_update(self, entity, dt):
+        if entity.i_count > 0:
+            entity.i_count -= dt
+        else:
+            if engine.get().entity_manager.get_in_area('death_zone', from_entity(entity)):
+                entity.i_count = entity.i_time
+                entity.health -= 1
+                print 'ow'
+                if entity.health == 0:
+                    print 'i am dead'
+
+
 def toward_zero(v, a, dt):
     if v > 0:
         return max(0, v - a * dt)

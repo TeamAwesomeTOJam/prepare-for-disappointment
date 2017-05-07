@@ -1,6 +1,8 @@
 {
   "name" : "player",
 
+  "health" : 2,
+
   "x" : 0,
   "y" : 0,
   "width" : 60,
@@ -35,6 +37,8 @@
 
   "shoot_time" : 2,
 
+  "i_time" : 2,
+
   "tags" : ["draw", "editable", "update"],
   "behaviors" : [
     "Animate", 
@@ -42,9 +46,9 @@
     "DrawHitBox", 
     "PlayerInput", 
     "PlayerMovement", 
-    "PlayerDeathZone", 
-    "PlayerProjectileShooter", 
+    "PlayerProjectileShooter",
     "FacingTracker", 
-    "PlayerAnimationChooser"]
+    "PlayerAnimationChooser",
+    "PlayerHurt"]
 
 }
