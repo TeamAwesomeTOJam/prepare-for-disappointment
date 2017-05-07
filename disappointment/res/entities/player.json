@@ -54,7 +54,6 @@
   "behaviors" : [
     "PlaySound",
     "Animate",
-    "DrawHitBox",
     "DrawSprite", 
     "PlayerInput", 
     "PlayerMovement", 
