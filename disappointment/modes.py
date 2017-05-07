@@ -9,14 +9,14 @@ class AttractMode(awesomeengine.mode.Mode):
         e = awesomeengine.get()
         e.input_manager.set_input_map('default')
 
-        h = Entity('hello')
+        h = Entity('title')
         c = Entity('welcome_camera')
 
         e.entity_manager.add(h, c)
 
-        l2 = awesomeengine.layer.SolidBackgroundLayer((0, 0, 0, 255))
+        l = awesomeengine.layer.SimpleCroppedLayer('draw')
 
-        cam = Camera(awesomeengine.get().renderer, c, [l2], [h])
+        cam = Camera(awesomeengine.get().renderer, c, [l], [])
 
         self.entities = [h, c]
         self.cams = [cam]
