@@ -13,6 +13,8 @@
   "KeyCode.space" : ["player", "up"],
 
   "Mouse.1" : ["player", "fire"],
+  "KeyCode.lshift" : ["player", "fire"],
+  "KeyCode.return_" : ["player", "fire"],
 
   "Mouse.Motion" : ["mouse", "move"]
 }
