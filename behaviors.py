@@ -340,10 +340,18 @@ class PlayerAnimationChooser(Behavior):
         elif entity.facing == 'right':
             entity.flip = 0
     
-        if entity.dir == "none" and entity.grounded:
-            entity.handle('play_animation', 'character-idle')
-        elif entity.grounded:
-            entity.handle('play_animation', 'character-walk')          
+        if entity.grounded:
+            if entity.animation_name == 'character-in-air':
+                entity.handle('play_animation', 'character-land')                
+            if entity.dir == "none":
+                entity.handle('play_animation', 'character-idle')
+            elif entity.dir != "none":
+                entity.handle('play_animation', 'character-walk')
+        else:
+            if entity.jump:
+                entity.handle('play_animation', 'character-jump')
+            else:
+                entity.handle('play_animation', 'character-in-air') 
 
 class HurtBadGuy(Behavior):
 

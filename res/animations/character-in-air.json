@@ -1,0 +1,12 @@
+{
+    "frames": [
+        {
+            "duration": 0.08,
+            "attributes": {
+                "sprite_name": "character-jump",
+                "sprite_index": 5
+            },
+            "events" : []
+        }
+    ]
+}
