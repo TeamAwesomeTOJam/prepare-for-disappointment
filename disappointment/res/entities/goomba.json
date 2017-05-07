@@ -12,12 +12,14 @@
 
   "gravity" : 300,
 
-  "health" : 5,
+  "health" : 6,
 
   "shoot_rate": 2,
   "launch_speed": 400,
 
   "image" : "enemy.png",
+
+  "images" : ["enemy5.png", "enemy4.png", "enemy3.png", "enemy2.png", "enemy1.png", "enemy.png"],
 
   "tags" : ["draw", "editable", "update", "death_zone", "bad_guy"],
   "behaviors" : ["GoombaWalk", "DrawHitBox", "FacingTracker", "DieOnZeroHealth", "BadGuyShoot", "DrawScaledImage"]

@@ -366,6 +366,7 @@ class HurtBadGuy(Behavior):
         hit = engine.get().entity_manager.get_in_area('bad_guy', from_entity(entity))
         for h in hit:
             h.health -= 1
+            h.image = h.images[h.health - 1]
         if hit:
             engine.get().entity_manager.remove(entity)
 
