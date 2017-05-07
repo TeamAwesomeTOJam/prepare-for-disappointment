@@ -25,12 +25,18 @@ setup(
         'Programming Language :: Python :: 2.7',
     ],
 
-    packages=['disappoint'],
+    packages=['disappointment'],
 
     package_data = {
-        'disappoint': ['res/*/*'],
+        'disappointment': ['res/*/*'],
     },
     
+    entry_points = {
+        'gui_scripts' : [
+            'disappointment = disappointment.main:go'
+        ]
+    },
+
     install_requires=[
         'awesomeengine>=0.0.1'
     ],
