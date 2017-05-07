@@ -469,7 +469,7 @@ class HealthHUD(Behavior):
             if i < p.health:
                 img = e.resource_manager.get('image', entity.full_img)
             else:
-                img = e.resource_manager.get('image', entity.full_img)
+                img = e.resource_manager.get('image', entity.empty_img)
 
             r = Rect(entity.top_left[0] + (0.5 + i)*entity.heart_width/2,
                      entity.top_left[1] - entity.heart_height/2,
