@@ -244,7 +244,18 @@ def load_map(map_name):
     e.entity_manager.commit_changes()
     
     if not e.entity_manager.has_by_name('player'):
-        e.entity_manager.add(Entity('player'))
+        p = Entity('player')
+
+        l = int(map_name) - 1
+
+        p.max_health = p.max_health_level[l]
+        p.health = p.max_health
+
+        p.air_jumps = p.air_jumps_level[l]
+
+        p.num_projectiles = p.num_projectiles_level[l]
+
+        e.entity_manager.add(p)
         e.entity_manager.commit_changes()
     
     if e.entity_manager.has_by_name('map_start'):

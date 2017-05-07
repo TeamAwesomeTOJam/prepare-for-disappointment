@@ -2,8 +2,10 @@
   "name" : "player",
 
 
-  "health" : 2,
-  "max_health" : 2,
+  "health" : 6,
+  "max_health" : 6,
+
+  "max_health_level": [6,12,18],
 
   "x" : 0,
   "y" : 0,
@@ -34,9 +36,13 @@
   "sprite_index" : 0,
   "sprite_scale" : 0.18,
 
-  "air_jumps" : 2,
+  "air_jumps" : 0,
+  "air_jumps_level" : [0,1,2],
 
   "launch_speed" : 400,
+
+  "num_projectiles" : 1,
+  "num_projectiles_level" : [1,2,3],
 
   "shoot_time" : 2,
 

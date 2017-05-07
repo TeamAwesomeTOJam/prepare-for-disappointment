@@ -320,19 +320,20 @@ class PlayerProjectileShooter(Behavior):
             else:
                 angle = radians(135)
 
-            p = Entity('projectile')
+            for i in range(entity.num_projectiles):
+                p = Entity('projectile')
 
-            p.x = entity.x
-            p.y = entity.y
-            p.vel_x = cos(angle) * entity.launch_speed# + entity.vel_x
-            p.vel_y = sin(angle) * entity.launch_speed# + entity.vel_y
+                p.x = entity.x + i * cos(angle) * 5
+                p.y = entity.y + i * sin(angle) * 5
+                p.vel_x = cos(angle) * entity.launch_speed# + entity.vel_x
+                p.vel_y = sin(angle) * entity.launch_speed# + entity.vel_y
 
-            if p.vel_x > 0:
-                p.flip = False
-            else:
-                p.flip = True
+                if p.vel_x > 0:
+                    p.flip = False
+                else:
+                    p.flip = True
 
-            engine.get().entity_manager.add(p)
+                engine.get().entity_manager.add(p)
             entity.handle('play_animation', 'character-shoot')
 
 
