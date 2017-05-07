@@ -42,14 +42,15 @@
 
   "tags" : ["draw", "update", "player"],
   "behaviors" : [
+    "Animate",
     "DrawHitBox",
-    "Animate", 
     "DrawSprite", 
     "PlayerInput", 
     "PlayerMovement", 
     "PlayerProjectileShooter",
     "FacingTracker", 
-    "PlayerAnimationChooser",
-    "PlayerHurt"]
+    "PlayerHurt",
+    "PlayerAnimationChooser"
+    ]
 
 }
