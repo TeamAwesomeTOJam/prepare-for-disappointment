@@ -116,11 +116,14 @@ class PlayMode(awesomeengine.mode.Mode):
         l = awesomeengine.layer.SimpleCroppedLayer('draw')
         l2 = awesomeengine.layer.SolidBackgroundLayer((0, 0, 0, 255))
 
-        cam = Camera(awesomeengine.get().renderer, ce, [l2, l], [])
+        h = Entity('hearts')
+
+
+        cam = Camera(awesomeengine.get().renderer, ce, [l2, l], [h])
         self.cams = [cam]
 
         m = Entity('mouse')
-        e.entity_manager.add(m)
+        e.entity_manager.add(m, h)
 
         if not hasattr(e, 'current_map'):
             load_map("1")

@@ -2,6 +2,7 @@
   "name" : "player",
 
   "health" : 2,
+  "max_health" : 2,
 
   "x" : 0,
   "y" : 0,

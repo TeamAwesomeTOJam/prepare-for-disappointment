@@ -458,6 +458,31 @@ class BadGuyShoot(Behavior):
 
                 engine.get().entity_manager.add(p)
 
+class HealthHUD(Behavior):
+
+    def __init__(self):
+        self.required_attrs = ['top_left', 'heart_width', 'heart_height',
+                               'full_img', 'empty_img']
+        self.event_handlers = {'draw' : self.handle_draw}
+
+    def handle_draw(self, entity, cam):
+        e = engine.get()
+        p = e.entity_manager.get_by_name('player')
+
+        for i in range(p.max_health):
+            if i < p.health:
+                img = e.resource_manager.get('image', entity.full_img)
+            else:
+                img = e.resource_manager.get('image', entity.full_img)
+
+            r = Rect(entity.top_left[0] + (0.5 + i)*entity.heart_width/2,
+                     entity.top_left[1] - entity.heart_height/2,
+                     entity.heart_width,
+                     entity.heart_height)
+
+            cam.draw_image(r, img)
+
+
 def toward_zero(v, a, dt):
     if v > 0:
         return max(0, v - a * dt)
