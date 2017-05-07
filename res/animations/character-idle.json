@@ -1,0 +1,54 @@
+{
+    "frames": [
+        {
+            "duration": 5.0,
+            "attributes": {
+                "sprite_name": "character",
+                "sprite_index": 0
+            },
+            "events" : []
+        }, 
+        {
+            "duration": 0.08,
+            "attributes": {
+                "sprite_index": 1
+            },
+            "events" : []
+        },
+        {
+            "duration": 0.08,
+            "attributes": {
+                "sprite_index": 2
+            },
+            "events" : []
+        }, 
+        {
+            "duration": 0.08,
+            "attributes": {
+                "sprite_index": 3
+            },
+            "events" : []
+        },
+        {
+            "duration": 0.08,
+            "attributes": {
+                "sprite_index": 4
+            },
+            "events" : []
+        },
+        {
+            "duration": 0.08,
+            "attributes": {
+                "sprite_index": 5
+            },
+            "events" : []
+        },
+        {
+            "duration": 0.08,
+            "attributes": {
+                "sprite_index": 6
+            },
+            "events" : []
+        }
+    ]
+}

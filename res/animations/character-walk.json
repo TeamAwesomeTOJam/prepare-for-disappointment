@@ -1,0 +1,103 @@
+{
+    "frames": [
+        {
+            "duration": 0.08,
+            "attributes": {
+                "sprite_name": "character",
+                "sprite_index": 7
+            },
+            "events" : []
+        }, 
+        {
+            "duration": 0.08,
+            "attributes": {
+                "sprite_index": 8
+            },
+            "events" : []
+        },
+        {
+            "duration": 0.08,
+            "attributes": {
+                "sprite_index": 9
+            },
+            "events" : []
+        }, 
+        {
+            "duration": 0.08,
+            "attributes": {
+                "sprite_index": 10
+            },
+            "events" : []
+        },
+        {
+            "duration": 0.08,
+            "attributes": {
+                "sprite_index": 11
+            },
+            "events" : []
+        },
+        {
+            "duration": 0.08,
+            "attributes": {
+                "sprite_index": 12
+            },
+            "events" : []
+        },
+        {
+            "duration": 0.08,
+            "attributes": {
+                "sprite_index": 13
+            },
+            "events" : []
+        },
+        {
+            "duration": 0.08,
+            "attributes": {
+                "sprite_index": 14
+            },
+            "events" : []
+        },
+        {
+            "duration": 0.08,
+            "attributes": {
+                "sprite_index": 15
+            },
+            "events" : []
+        },
+        {
+            "duration": 0.08,
+            "attributes": {
+                "sprite_index": 16
+            },
+            "events" : []
+        },
+        {
+            "duration": 0.08,
+            "attributes": {
+                "sprite_index": 17
+            },
+            "events" : []
+        },
+        {
+            "duration": 0.08,
+            "attributes": {
+                "sprite_index": 18
+            },
+            "events" : []
+        },
+        {
+            "duration": 0.08,
+            "attributes": {
+                "sprite_index": 19
+            },
+            "events" : []
+        },
+        {
+            "duration": 0.08,
+            "attributes": {
+                "sprite_index": 20
+            },
+            "events" : []
+        }
+    ]
+}
