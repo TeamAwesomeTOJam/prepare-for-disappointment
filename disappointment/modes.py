@@ -29,7 +29,7 @@ class AttractMode(awesomeengine.mode.Mode):
     def handle_event(self, event):
         if event.target == 'MODE':
             if event.action == 'play':
-                awesomeengine.get().change_mode('play')
+                awesomeengine.get().change_mode('splash')
     
         if awesomeengine.get().entity_manager.has_by_name(event.target):
             awesomeengine.get().entity_manager.get_by_name(event.target).handle('input', event.action, event.value)
@@ -152,11 +152,62 @@ class PlayMode(awesomeengine.mode.Mode):
     def draw(self):
         for c in awesomeengine.get().entity_manager.get_by_tag('camera'):
             c.camera.render()
-            
-            
-def load_map(map_name):
+
+class SpalshScreen(awesomeengine.mode.Mode):
+
+    def enter(self):
+        un_load_map()
+
+        e = awesomeengine.get()
+        e.input_manager.set_input_map('default')
+
+        s = Entity('splash_screens')
+
+        if not hasattr(e, 'current_map'):
+            s.image = s.screens[0]
+        else:
+            s.image = s.screens[int(e.current_map)]
+
+        c = Entity('splash_camera')
+
+        e.entity_manager.add(s, c)
+
+        l = awesomeengine.layer.SimpleCroppedLayer('draw')
+
+        cam = Camera(awesomeengine.get().renderer, c, [l], [])
+
+        self.entities = [s, c]
+        self.cams = [cam]
+
+    def leave(self):
+
+        e = awesomeengine.get()
+        for ent in self.entities:
+            e.entity_manager.remove(ent)
+
+
+        if not hasattr(e, 'current_map'):
+            load_map("1")
+        else:
+            load_map(str(int(awesomeengine.get().current_map) + 1))
+
+    def update(self, dt):
+        pass
+
+    def draw(self):
+        for c in awesomeengine.get().entity_manager.get_by_tag('camera'):
+            c.camera.render()
+
+    def handle_event(self, event):
+        e = awesomeengine.get()
+        if event.target == 'MODE' and event.value == 1:
+            if event.action == 'play':
+                e.change_mode('play')
+
+
+def un_load_map():
     e = awesomeengine.get()
-    
+
     if e.entity_manager.has_by_name('selector'):
         selector = e.entity_manager.get_by_name('selector')
         e.entity_manager.remove(selector)
@@ -164,7 +215,13 @@ def load_map(map_name):
     for entity in e.entity_manager.get_by_tag('editable'):
         e.entity_manager.remove(entity)
     e.entity_manager.commit_changes()
-    
+
+
+def load_map(map_name):
+    e = awesomeengine.get()
+
+    un_load_map()
+
     e.entity_manager.add_from_map(map_name)
     e.entity_manager.commit_changes()
     

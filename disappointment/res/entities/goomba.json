@@ -1,7 +1,7 @@
 {
   "x" : 0,
   "y" : 0,
-  "width" : 60,
+  "width" : 77,
   "height" : 60,
 
   "colour" : [255, 119, 0,0],
@@ -17,7 +17,9 @@
   "shoot_rate": 2,
   "launch_speed": 400,
 
+  "image" : "enemy.png",
+
   "tags" : ["draw", "editable", "update", "death_zone", "bad_guy"],
-  "behaviors" : ["GoombaWalk", "DrawHitBox", "FacingTracker", "DieOnZeroHealth", "BadGuyShoot"]
+  "behaviors" : ["GoombaWalk", "DrawHitBox", "FacingTracker", "DieOnZeroHealth", "BadGuyShoot", "DrawScaledImage"]
 
 }
