@@ -20,6 +20,8 @@ def print_map(path):
         min_y = min(min_y, entity.y - entity.width / 2.0)
         max_x = max(max_x, entity.x + entity.width / 2.0)
         max_y = max(max_y, entity.y + entity.height / 2.0)
+    
+    print min_x, min_y
         
     x_offset = -min_x
     y_offset = -min_y

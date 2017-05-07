@@ -1,0 +1,13 @@
+{
+  "name" : "map1-foreground",
+
+  "x" : 2080,
+  "y" : 750,
+  "width" : 4873,
+  "height" : 2077,
+
+  "image" : "map1-frontlayer.png",
+
+  "tags" : ["draw2", "editable"],
+  "behaviors" : ["DrawScaledImage"]
+}
