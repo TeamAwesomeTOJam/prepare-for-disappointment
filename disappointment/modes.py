@@ -161,6 +161,11 @@ class PlayMode(awesomeengine.mode.Mode):
         for e in awesomeengine.get().entity_manager.get_by_tag('update'):
             e.handle('update', dt)
         awesomeengine.get().entity_manager.update_all_positions()
+
+        if awesomeengine.get().entity_manager.get_by_name('player').health <= 0:
+            awesomeengine.get().change_mode('dead')
+        if awesomeengine.get().entity_manager.get_by_name('player').supre_dead:
+            awesomeengine.get().change_mode('splash')
         
         if awesomeengine.get().entity_manager.has_by_name('map_finish'):
             map_end = awesomeengine.get().entity_manager.get_by_name('map_finish')
@@ -169,10 +174,7 @@ class PlayMode(awesomeengine.mode.Mode):
                 awesomeengine.get().change_mode('splash')
                 #load_map(str(int(awesomeengine.get().current_map) + 1))
 
-        if awesomeengine.get().entity_manager.get_by_name('player').health <= 0:
-            awesomeengine.get().change_mode('dead')
-        if awesomeengine.get().entity_manager.get_by_name('player').supre_dead:
-            awesomeengine.get().change_mode('splash')
+
 
     def draw(self):
         for c in awesomeengine.get().entity_manager.get_by_tag('camera'):
