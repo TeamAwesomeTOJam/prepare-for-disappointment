@@ -384,6 +384,7 @@ class DieOnZeroHealth(Behavior):
     def handle_update(self, entity, dt):
         if entity.health == 0:
             engine.get().entity_manager.remove(entity)
+            entity.handle('play_sound', 'enemy-death')
 
 
 class PlayerHurt(Behavior):
@@ -464,6 +465,7 @@ class BadGuyShoot(Behavior):
                 p.vel_y = sin(angle) * entity.launch_speed
 
                 engine.get().entity_manager.add(p)
+                entity.handle("play_sound", "enemy-shoot")
 
 class HealthHUD(Behavior):
 
