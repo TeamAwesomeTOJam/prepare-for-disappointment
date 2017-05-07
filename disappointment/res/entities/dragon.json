@@ -1,6 +1,15 @@
 {
   "x" : 0,
   "y" : 0,
-  "width" : ,
-  "height"
+  "width" : 1000,
+  "height" : 1000,
+
+  "image" : "dragon.png",
+
+  "rate" : 1,
+
+  "speed" : 200,
+
+  "tags" : ["draw2", "editable", "update"],
+  "behaviors" : ["DrawScaledImage", "FireballSpawner"]
 }

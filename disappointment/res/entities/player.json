@@ -48,6 +48,8 @@
 
   "i_time" : 2,
 
+  "supre_dead" : false,
+
   "tags" : ["draw", "update", "player"],
   "behaviors" : [
     "PlaySound",

@@ -8,7 +8,7 @@
 
   "image" : "Intro-LV-1.png",
 
-  "screens" : ["Intro-LV-1.png", "Intro-LV-2.png", "Intro-LV-3.png", "Intro-LV-4.png"],
+  "screens" : ["Intro-LV-1.png", "Intro-LV-2.png", "Intro-LV-3.png", "Intro-LV-4.png", "Intro-LV-4.png"],
 
   "tags" : ["draw"],
   "behaviors" : ["DrawScaledImage"]

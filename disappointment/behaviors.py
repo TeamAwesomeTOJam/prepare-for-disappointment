@@ -496,6 +496,49 @@ class HealthHUD(Behavior):
             cam.draw_image(r, img)
 
 
+class Fireball(Behavior):
+
+    def __init__(self):
+        self.required_attrs = ['x', 'y',('vel_x', 0), ('vel_y', 0), 'width', 'height', 'speed']
+        self.event_handlers = {'update': self.handle_update}
+
+    def handle_update(self, entity, dt):
+        entity.x += entity.vel_x * dt
+        entity.y += entity.vel_y * dt
+
+        hit = engine.get().entity_manager.get_in_area('player', from_entity(entity))
+        if hit:
+            hit.pop().supre_dead = True
+
+class FireballSpawner(Behavior):
+
+    def __init__(self):
+        self.required_attrs = ['x', 'y', 'rate', 'speed', ('rate_count', 0)]
+        self.event_handlers = {'update':self.handle_update}
+
+    def handle_update(self, entity, dt):
+        entity.rate_count += dt
+        if entity.rate_count > entity.rate:
+            entity.rate_count = 0
+
+            e = engine.get()
+
+            target = e.entity_manager.get_by_name('player')
+
+            angle = radians((Vec2d(target.x, target.y) - Vec2d(entity.x, entity.y)).angle)
+
+            p = Entity('fireball')
+
+            p.x = entity.x
+            p.y = entity.y
+            p.vel_x = cos(angle) * entity.speed
+            p.vel_y = sin(angle) * entity.speed
+
+            e.entity_manager.add(p)
+
+
+
+
 def toward_zero(v, a, dt):
     if v > 0:
         return max(0, v - a * dt)
