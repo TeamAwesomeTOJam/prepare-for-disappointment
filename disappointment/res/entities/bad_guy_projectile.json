@@ -14,6 +14,6 @@
 
   "time_to_live": 5,
 
-  "behaviors": ["DrawHitBox" , "Projectile", "TimeToLive", "HurtPlayer", "DrawScaledImage"],
+  "behaviors": ["DrawHitBox" , "Projectile", "PlaySound", "TimeToLive", "HurtPlayer", "DrawScaledImage"],
   "tags": ["draw", "update", "kill_me"]
 }
