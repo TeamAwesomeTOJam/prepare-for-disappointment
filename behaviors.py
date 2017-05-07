@@ -2,7 +2,7 @@ from awesomeengine.behavior import Behavior
 from awesomeengine import engine
 from awesomeengine.entity import Entity
 from awesomeengine.rectangle import from_entity, Rect
-from math import sin, cos, radians
+from math import sin, cos, radians, atan, sqrt, degrees, pi
 from awesomeengine.vec2d import Vec2d
 
 class PlayerInput(Behavior):
@@ -428,15 +428,34 @@ class BadGuyShoot(Behavior):
         if entity.shoot_counter <= 0:
             entity.shoot_counter = entity.shoot_rate
 
-
-            angle = radians(135)
-
             p = Entity('bad_guy_projectile')
+
+            target = engine.get().entity_manager.get_by_name('player')
+
+            x = target.x - entity.x
+            y = target.y - entity.y
+
+            v = entity.launch_speed
+            g = p.gravity
+
+
+            test = v*v*v*v - g * (g * x * x + 2 * y * v * v )
+
+            if x < 0:
+                add = pi
+            else:
+                add = 0
+
+            if test >= 0:
+                angle = atan((v*v + sqrt(test))/(g*x)) + add
+                print degrees(angle), x
+            else:
+                angle = radians(135)
 
             p.x = entity.x
             p.y = entity.y
-            p.vel_x = cos(angle) * entity.launch_speed + entity.vel_x
-            p.vel_y = sin(angle) * entity.launch_speed + entity.vel_y
+            p.vel_x = cos(angle) * entity.launch_speed
+            p.vel_y = sin(angle) * entity.launch_speed
 
             engine.get().entity_manager.add(p)
 
