@@ -221,7 +221,6 @@ def un_load_map():
     if e.entity_manager.has_by_name('player'):
         player = e.entity_manager.get_by_name('player')
         e.entity_manager.remove(player)
-        print 'remove player'
 
     if e.entity_manager.has_by_name('selector'):
         selector = e.entity_manager.get_by_name('selector')
@@ -248,7 +247,6 @@ def load_map(map_name):
         p = Entity('player')
 
         l = int(map_name) - 1
-        print 'level', l
 
         p.max_health = p.max_health_level[l]
         p.health = p.max_health

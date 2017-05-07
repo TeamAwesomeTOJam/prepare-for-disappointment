@@ -324,8 +324,8 @@ class PlayerProjectileShooter(Behavior):
             for i in range(entity.num_projectiles):
                 p = Entity('projectile')
 
-                p.x = entity.x + i * cos(angle) * 5
-                p.y = entity.y + i * sin(angle) * 5
+                p.x = entity.x + i * cos(angle) * 10
+                p.y = entity.y + i * sin(angle) * 10
                 p.vel_x = cos(angle) * entity.launch_speed# + entity.vel_x
                 p.vel_y = sin(angle) * entity.launch_speed# + entity.vel_y
 
