@@ -1,6 +1,7 @@
 {
   "name" : "player",
 
+
   "health" : 2,
   "max_health" : 2,
 
@@ -12,7 +13,7 @@
   "colour" : [0,0,255,255],
 
   "grounded" : false,
-  "dir" : null,
+  "dir" : "none",
 
   "max_ground_speed" : 300,
   "ground_acceleration" : 1600,
@@ -26,7 +27,7 @@
   "jump_force" : 1000,
 
   "jump_time" : 0.65,
-  
+
   "default_animation" : "character-idle",
   
   "sprite_name" : "character",
