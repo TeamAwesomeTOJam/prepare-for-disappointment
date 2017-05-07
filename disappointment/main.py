@@ -16,7 +16,7 @@ def go():
     e.behavior_manager.register_module(behaviors)
     e.behavior_manager.register_module(editor_behaviors)
 
-    e.create_window(title='Prepare For Disappointment', size=(1280, 720))
+    e.create_window(title='Prepare For Disappointment', size=(2560, 1440))
 
     e.add_mode('welcome', modes.AttractMode())
     e.add_mode('edit', modes.EditorMode())

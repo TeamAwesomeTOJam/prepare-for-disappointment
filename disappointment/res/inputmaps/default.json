@@ -1,7 +1,8 @@
 {
   "KeyCode.escape"  : ["ENGINE", "QUIT"],
   "KeyCode.f1" : ["ENGINE", "TELEMETRY"],
-  "KeyCode.f2"  : ["ENGINE", "CLEAR"], 
+  "KeyCode.f2"  : ["ENGINE", "CLEAR"],
+  "KeyCode.f3"  : ["ENGINE", "FULLSCREEN"],
   
   "KeyCode.space" : ["MODE", "play"],
 
