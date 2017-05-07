@@ -1,3 +1,5 @@
+import os, sys
+
 import awesomeengine
 import behaviors
 import editor_behaviors
@@ -5,7 +7,12 @@ import modes
 
 
 def go():
-    e = awesomeengine.Engine('res')
+    if getattr(sys, 'frozen', False):
+        root = sys._MEIPASS
+    else:
+        root = os.path.dirname(os.path.abspath(__file__))
+
+    e = awesomeengine.Engine(os.path.join(root, 'res'))
     e.behavior_manager.register_module(behaviors)
     e.behavior_manager.register_module(editor_behaviors)
 
