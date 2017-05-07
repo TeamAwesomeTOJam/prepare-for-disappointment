@@ -118,13 +118,18 @@ class PlayMode(awesomeengine.mode.Mode):
 
         cam = Camera(awesomeengine.get().renderer, ce, [l2, l], [])
         self.cams = [cam]
-        
+
+        m = Entity('mouse')
+        e.entity_manager.add(m)
+
         if not hasattr(e, 'current_map'):
             load_map("1")
 
     def leave(self):
         c = awesomeengine.get().entity_manager.get_by_name('play_camera')
-        awesomeengine.get().entity_manager.remove(c)       
+        awesomeengine.get().entity_manager.remove(c)
+        m = awesomeengine.get().entity_manager.get_by_name('mouse')
+        awesomeengine.get().entity_manager.remove(m)
 
     def handle_event(self, event):
         if event.target == 'MODE':
