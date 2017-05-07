@@ -274,7 +274,6 @@ class Projectile(Behavior):
                                ('vel_x', 0),
                                ('vel_y', 0),
                                'width', 'height',
-                               'launch_speed',
                                'gravity']
         self.event_handlers = {'update': self.handle_update}
 
@@ -303,11 +302,17 @@ class FacingTracker(Behavior):
 class PlayerProjectileShooter(Behavior):
 
     def __init__(self):
-        self.required_attrs = []
-        self.event_handlers = {'input' : self.handle_input}
+        self.required_attrs = ['shoot_time', ('shoot_counter', 0)]
+        self.event_handlers = {'input' : self.handle_input,
+                               'update' : self.handle_update}
+
+    def handle_update(self, entity, dt):
+        if entity.shoot_counter > 0:
+            entity.shoot_counter -= dt
 
     def handle_input(self, entity, action, value):
-        if action == 'fire' and value == 1:
+        if action == 'fire' and value == 1 and entity.shoot_counter <= 0:
+            entity.shoot_counter = entity.shoot_time
 
             m = engine.get().entity_manager.get_by_name('mouse')
 
@@ -317,8 +322,8 @@ class PlayerProjectileShooter(Behavior):
 
             p.x = entity.x
             p.y = entity.y
-            p.vel_x = cos(angle) * p.launch_speed + entity.vel_x
-            p.vel_y = sin(angle) * p.launch_speed + entity.vel_y
+            p.vel_x = cos(angle) * entity.launch_speed + entity.vel_x
+            p.vel_y = sin(angle) * entity.launch_speed + entity.vel_y
 
             engine.get().entity_manager.add(p)
 
@@ -326,7 +331,7 @@ class PlayerProjectileShooter(Behavior):
 class PlayerAnimationChooser(Behavior):
 
     def __init__(self):
-        self.required_attrs = (('facing', "none"), ('dir', "none"), ('grounded', True))
+        self.required_attrs = [('facing', "none"), ('dir', "none"), ('grounded', True)]
         self.event_handlers = {'update': self.handle_update}
         
     def handle_update(self, entity, dt):
@@ -339,6 +344,29 @@ class PlayerAnimationChooser(Behavior):
             entity.handle('play_animation', 'character-idle')
         elif entity.grounded:
             entity.handle('play_animation', 'character-walk')          
+
+class HurtBadGuy(Behavior):
+
+    def __init__(self):
+        self.required_attrs = ['x', 'y', 'width', 'height']
+        self.event_handlers = {'update' : self.handle_update}
+
+    def handle_update(self, entity, dt):
+        hit = engine.get().entity_manager.get_in_area('bad_guy', from_entity(entity))
+        for h in hit:
+            h.health -= 1
+        if hit:
+            engine.get().entity_manager.remove(entity)
+
+class DieOnZeroHealth(Behavior):
+
+    def __init__(self):
+        self.required_attrs = ['health']
+        self.event_handlers = {'update' : self.handle_update}
+
+    def handle_update(self, entity, dt):
+        if entity.health == 0:
+            engine.get().entity_manager.remove(entity)
 
 def toward_zero(v, a, dt):
     if v > 0:

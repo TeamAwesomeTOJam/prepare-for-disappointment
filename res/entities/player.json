@@ -31,6 +31,10 @@
 
   "air_jumps" : 2,
 
+  "launch_speed" : 200,
+
+  "shoot_time" : 2,
+
   "tags" : ["draw", "editable", "update"],
   "behaviors" : [
     "Animate", 
