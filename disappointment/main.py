@@ -22,6 +22,7 @@ def go():
     e.add_mode('edit', modes.EditorMode())
     e.add_mode('play', modes.PlayMode())
     e.add_mode('splash', modes.SpalshScreen())
+    e.add_mode('dead', modes.DeadMode())
 
     e.change_mode('welcome')
     e.run()

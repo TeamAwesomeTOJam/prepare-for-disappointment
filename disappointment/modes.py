@@ -27,7 +27,7 @@ class AttractMode(awesomeengine.mode.Mode):
             e.entity_manager.remove(ent)
 
     def handle_event(self, event):
-        if event.target == 'MODE':
+        if event.target == 'MODE' and event.value == 1:
             if event.action == 'play':
                 awesomeengine.get().change_mode('splash')
     
@@ -159,6 +159,9 @@ class PlayMode(awesomeengine.mode.Mode):
                 awesomeengine.get().change_mode('splash')
                 #load_map(str(int(awesomeengine.get().current_map) + 1))
 
+        if awesomeengine.get().entity_manager.get_by_name('player').health <= 0:
+            awesomeengine.get().change_mode('dead')
+
     def draw(self):
         for c in awesomeengine.get().entity_manager.get_by_tag('camera'):
             c.camera.render()
@@ -214,6 +217,47 @@ class SpalshScreen(awesomeengine.mode.Mode):
             if event.action == 'play':
                 e.change_mode('play')
 
+
+class DeadMode(awesomeengine.mode.Mode):
+    def enter(self):
+        un_load_map()
+
+        e = awesomeengine.get()
+        e.current_map = '0'
+        e.input_manager.set_input_map('default')
+
+        h = Entity('dead')
+        c = Entity('welcome_camera')
+
+        e.entity_manager.add(h, c)
+
+        l = awesomeengine.layer.SimpleCroppedLayer('draw')
+
+        cam = Camera(awesomeengine.get().renderer, c, [l], [])
+
+        self.entities = [h, c]
+        self.cams = [cam]
+
+    def leave(self):
+        e = awesomeengine.get()
+        for ent in self.entities:
+            e.entity_manager.remove(ent)
+
+    def handle_event(self, event):
+        if event.target == 'MODE':
+            if event.action == 'play':
+                awesomeengine.get().change_mode('welcome')
+
+        if awesomeengine.get().entity_manager.has_by_name(event.target):
+            awesomeengine.get().entity_manager.get_by_name(event.target).handle('input', event.action, event.value)
+
+    def update(self, dt):
+        for e in awesomeengine.get().entity_manager.get_by_tag('update'):
+            e.handle('update', dt)
+
+    def draw(self):
+        for c in awesomeengine.get().entity_manager.get_by_tag('camera'):
+            c.camera.render()
 
 def un_load_map():
     e = awesomeengine.get()
