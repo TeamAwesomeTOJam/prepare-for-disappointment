@@ -33,12 +33,14 @@ class PlayerInput(Behavior):
                 if entity.grounded:
                     entity.jump = True
                     entity.jump_count = entity.jump_time
+                    entity.handle('play_animation', 'character-jump')
 
                 elif entity.air_jumps_remaining > 0:
                     entity.air_jumps_remaining -= 1
                     entity.jump = True
                     entity.air_jump = True
                     entity.jump_count = entity.jump_time
+                    entity.handle('play_animation', 'character-jump')
             elif value == 0:
                 entity.jump = False
 
@@ -341,17 +343,17 @@ class PlayerAnimationChooser(Behavior):
             entity.flip = 0
     
         if entity.grounded:
+            entity.default_animation = 'character-idle'
+        else:
+            entity.default_animation = 'character-in-air'
+            
+        if entity.grounded:
             if entity.animation_name == 'character-in-air':
                 entity.handle('play_animation', 'character-land')                
-            if entity.dir == "none":
+            if entity.dir == "none" and entity.animation_name != 'character-land':
                 entity.handle('play_animation', 'character-idle')
             elif entity.dir != "none":
                 entity.handle('play_animation', 'character-walk')
-        else:
-            if entity.jump:
-                entity.handle('play_animation', 'character-jump')
-            else:
-                entity.handle('play_animation', 'character-in-air') 
 
 class HurtBadGuy(Behavior):
 
