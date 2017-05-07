@@ -34,7 +34,7 @@
 
   "air_jumps" : 2,
 
-  "launch_speed" : 200,
+  "launch_speed" : 400,
 
   "shoot_time" : 2,
 
@@ -42,6 +42,7 @@
 
   "tags" : ["draw", "editable", "update", "player"],
   "behaviors" : [
+    "DrawHitBox",
     "Animate", 
     "DrawSprite", 
     "PlayerInput", 

@@ -322,8 +322,8 @@ class PlayerProjectileShooter(Behavior):
 
             p.x = entity.x
             p.y = entity.y
-            p.vel_x = cos(angle) * entity.launch_speed + entity.vel_x
-            p.vel_y = sin(angle) * entity.launch_speed + entity.vel_y
+            p.vel_x = cos(angle) * entity.launch_speed# + entity.vel_x
+            p.vel_y = sin(angle) * entity.launch_speed# + entity.vel_y
 
             engine.get().entity_manager.add(p)
 
@@ -396,8 +396,8 @@ class PlayerHurt(Behavior):
         if entity.i_count <= 0:
             entity.i_count = entity.i_time
             entity.health -= damage
-            print 'ow'
-            if entity.health == 0:
+            print 'ow', entity.health
+            if entity.health <= 0:
                 print 'i am dead'
 
 
@@ -448,16 +448,13 @@ class BadGuyShoot(Behavior):
 
             if test >= 0:
                 angle = atan((v*v + sqrt(test))/(g*x)) + add
-                print degrees(angle), x
-            else:
-                angle = radians(135)
 
-            p.x = entity.x
-            p.y = entity.y
-            p.vel_x = cos(angle) * entity.launch_speed
-            p.vel_y = sin(angle) * entity.launch_speed
+                p.x = entity.x
+                p.y = entity.y
+                p.vel_x = cos(angle) * entity.launch_speed
+                p.vel_y = sin(angle) * entity.launch_speed
 
-            engine.get().entity_manager.add(p)
+                engine.get().entity_manager.add(p)
 
 def toward_zero(v, a, dt):
     if v > 0:
