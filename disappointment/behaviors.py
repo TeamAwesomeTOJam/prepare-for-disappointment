@@ -372,7 +372,7 @@ class HurtBadGuy(Behavior):
     def handle_update(self, entity, dt):
         hit = engine.get().entity_manager.get_in_area('bad_guy', from_entity(entity))
         for h in hit:
-            h.health -= 1
+            h.health -= 2
             h.image = h.images[h.health - 1]
         if hit:
             engine.get().entity_manager.remove(entity)

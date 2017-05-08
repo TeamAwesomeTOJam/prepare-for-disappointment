@@ -13,6 +13,8 @@ class AttractMode(awesomeengine.mode.Mode):
         e = awesomeengine.get()
         e.input_manager.set_input_map('default')
 
+        e.current_map = '0'
+
         h = Entity('title')
         c = Entity('welcome_camera')
 
@@ -166,7 +168,7 @@ class PlayMode(awesomeengine.mode.Mode):
 
         if awesomeengine.get().entity_manager.get_by_name('player').supre_dead:
             awesomeengine.get().change_mode('splash')
-        if awesomeengine.get().entity_manager.get_by_name('player').health <= 0:
+        elif awesomeengine.get().entity_manager.get_by_name('player').health <= 0:
             awesomeengine.get().change_mode('dead')
 
         
